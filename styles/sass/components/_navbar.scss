@@ -1,0 +1,21 @@
+nav {
+	.logo {
+		font-size: 1.5em;
+		font-weight: bolder;
+	}
+
+	.heading-left,
+	.heading-right {
+		display: flex;
+		align-items: center;
+
+		a {
+			margin-left: 20px;
+			padding: 8px;
+			border-radius: 15px;
+			&:hover {
+				background-color: rgba(0, 0, 0, 0.2);
+			}
+		}
+	}
+}
