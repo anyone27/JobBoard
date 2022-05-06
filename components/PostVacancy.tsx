@@ -1,9 +1,12 @@
 import countrydata from '../countrycodes.json';
+import currencycodes from '../currencycodes.json';
+import { useEffect } from 'react';
+import Router from 'next/router';
 
-function PostJobs({ userId, linkedCompanies }) {
+function PostJobs({ userId, companyArray }) {
 	let countryArray = [];
-	let companyArray = [];
-	// let linkedCompany = { 1: 'Netflix', 2: 'Microsoft', 3: 'Amazon' };
+	let currencyArray = [];
+
 	// populate country selection dropdown
 	for (const key in countrydata) {
 		countryArray.push(
@@ -12,14 +15,16 @@ function PostJobs({ userId, linkedCompanies }) {
 			</option>
 		);
 	}
-	// populate company selection drop down from user associated companies
-	for (const key in linkedCompanies) {
-		companyArray.push(
-			<option key={key} value={key}>
-				{linkedCompanies[key]}
+
+	for (const key in currencycodes) {
+		currencyArray.push(
+			<option key={key} value={currencycodes[key].code}>
+				{currencycodes[key].name}
 			</option>
 		);
 	}
+
+	// console.log(currencycodes[1]);
 
 	const postJob = async (event) => {
 		event.preventDefault();
@@ -30,7 +35,8 @@ function PostJobs({ userId, linkedCompanies }) {
 		} else if (event.target.upperpay.value < event.target.lowerpay.value) {
 			alert('upperpay band is less than lower pay band');
 		} else {
-			// submit data to api
+			console.log('jobtitle', event.target.jobtitle.value);
+			// Submit data to api
 			const res = await fetch('./api/vacancies', {
 				method: 'POST',
 				body: JSON.stringify({
@@ -38,20 +44,24 @@ function PostJobs({ userId, linkedCompanies }) {
 					companyId: event.target.company.value,
 					jobtitle: event.target.jobtitle.value,
 					jobdescription: event.target.jobdescription.value,
-					city: event.target.postionlocation.value,
-					fulltime: event.target.fulltime.value,
-					parttime: event.target.parttime.value,
-					contract: event.target.contract.value,
+					city: event.target.positionlocation.value,
+					fulltime_parttime_contract:
+						event.target.fulltime_parttime_contract.value,
 					country: event.target.countryselect.value,
 					currency_symbol: event.target.currency.value,
 					lowerpay: event.target.lowerpay.value,
 					upperpay: event.target.upperpay.value,
-					onsite: event.target.onsite.value,
-					hybrid: event.target.hybrid.value,
-					remote: event.target.remote.value,
+					onsite_remote_hybrid: event.target.onsite_remote_hybrid.value,
 					expires: event.target.expires.value,
 				}),
+				headers: {
+					'Content-Type': 'application/json',
+				},
 			});
+			if (res.ok) {
+				console.log('successfully posted vacancy');
+				Router.reload();
+			}
 		}
 	};
 
@@ -76,6 +86,14 @@ function PostJobs({ userId, linkedCompanies }) {
 						Job Title
 					</label>
 					<input id="jobtitle" type="text" required />
+				</div>
+
+				{/* Select the currency relevant for the job posting */}
+				<div className="form-item">
+					<label htmlFor="currency">Select Currency</label>
+					<select id="currency" defaultValue="GBP">
+						{currencyArray}
+					</select>
 				</div>
 
 				{/* Enter the lower pay bracket and the upper pay bracket if it is a range */}
@@ -108,6 +126,7 @@ function PostJobs({ userId, linkedCompanies }) {
 					<input id="positionlocation" type="text" defaultValue="" />
 
 					{/* Select the country relevant for the job posting */}
+
 					<label htmlFor="countryselect">Select Country</label>
 					<select id="countryselect" defaultValue="GB">
 						{countryArray}
@@ -115,35 +134,35 @@ function PostJobs({ userId, linkedCompanies }) {
 				</div>
 
 				{/* Select either remote, hybrid or onsite position */}
-				<div className="radio-item required-item">
-					<label htmlFor="remote">Remote</label>
-					<input
-						type="radio"
-						name="remote"
-						value="remote"
-						id="remote"
+				<div className="form-item">
+					<label className="required-item" htmlFor="onsite_remote_hybrid">
+						Onsite/Remote/Hybrid
+					</label>
+					<select
+						name="onsite_remote_hybrid"
+						id="onsite_remote_hybrid"
 						required
-					/>
-					<label htmlFor="hybrid">Hybrid</label>
-					<input type="radio" name="remote" value="hybrid" id="hybrid" />
-					<label htmlFor="onsite">On-site</label>
-					<input type="radio" name="remote" value="onsite" id="onsite" />
+					>
+						<option value="onsite">Onsite</option>
+						<option value="remote">Remote</option>
+						<option value="hybrid">Hyrbid</option>
+					</select>
 				</div>
 
 				{/* Select if it is a fulltime, parttime or contract position */}
-				<div className="radio-item required-item">
-					<label htmlFor="fulltime">Full-Time</label>
-					<input
-						type="radio"
-						name="fulltime"
-						value="fulltime"
-						id="fulltime"
+				<div className="form-item">
+					<label className="required-item" htmlFor="fulltime_parttime_contract">
+						Fulltime/Parttime/Contract
+					</label>
+					<select
+						name="fulltime_parttime_contract"
+						id="fulltime_parttime_contract"
 						required
-					/>
-					<label htmlFor="parttime">Part-time</label>
-					<input type="radio" name="fulltime" value="parttime" id="parttime" />
-					<label htmlFor="contract">contract</label>
-					<input type="radio" name="fulltime" value="contract" id="contract" />
+					>
+						<option value="fulltime">Fulltime</option>
+						<option value="parttime">Parttime</option>
+						<option value="contract">Contract</option>
+					</select>
 				</div>
 
 				{/* Select an expiration time for the job posting from 30/60/90 days */}

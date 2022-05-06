@@ -44,7 +44,6 @@ export default async function registerUser(req, res) {
 					res.send([true, userInfo]);
 				}
 			}
-			// console.log('ttt', result);
 		}
 	} else {
 		res.send('Error');
