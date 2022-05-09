@@ -1,0 +1,37 @@
+form {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	border: $border;
+	padding: 20px;
+	align-items: center;
+
+	.form-item {
+		width: 80%;
+		margin: 5px 10px;
+		display: flex;
+
+		input,
+		select {
+			@include border-style;
+			@include form-style;
+		}
+
+		textarea {
+			@include border-style;
+			@include form-style;
+			height: auto;
+		}
+		.checkbox {
+			min-width: 140px;
+			text-align: center;
+		}
+		input[type='checkbox'] {
+			height: 20px;
+		}
+	}
+	.required-item::after {
+		content: '*';
+		color: red;
+	}
+}

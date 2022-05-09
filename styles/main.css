@@ -12,6 +12,15 @@ a {
   text-decoration: none;
 }
 
+button {
+  border: 2px gray solid;
+  border-radius: 10px;
+  min-width: 100px;
+  height: 30px;
+  padding: 5px;
+  margin: 10px;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -88,43 +97,48 @@ nav .heading-right a:hover {
   overflow: auto;
   text-align: justify;
 }
-.main-container form {
-  width: 80%;
+
+form {
+  width: 100%;
   display: flex;
   flex-direction: column;
   border: 2px gray solid;
   padding: 20px;
   align-items: center;
 }
-.main-container form button {
-  width: 100px;
-  height: 30px;
-  border-radius: 15px;
-}
-.main-container form .form-item {
-  width: 100%;
+form .form-item {
+  width: 80%;
   margin: 5px 10px;
   display: flex;
-  justify-content: flex-start;
+}
+form .form-item input,
+form .form-item select {
+  border: 2px gray solid;
+  border-radius: 10px;
   width: 100%;
+  height: 40px;
+  margin: 10px;
+  padding: 10px;
 }
-.main-container form .form-item label {
-  width: 200px;
-  flex: 1 1 auto;
-  margin: 20px;
+form .form-item textarea {
+  border: 2px gray solid;
+  border-radius: 10px;
+  width: 100%;
+  height: 40px;
+  margin: 10px;
+  padding: 10px;
+  height: auto;
 }
-.main-container form .form-item input {
-  width: 80%;
-  flex: 1 1 auto;
+form .form-item .checkbox {
+  min-width: 140px;
+  text-align: center;
 }
-
-.required-item::after {
+form .form-item input[type=checkbox] {
+  height: 20px;
+}
+form .required-item::after {
   content: "*";
   color: red;
-}
-
-.radio-item > label {
-  margin: 0px 5px 0px 25px;
 }
 
 /*# sourceMappingURL=main.css.map */

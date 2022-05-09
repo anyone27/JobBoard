@@ -110,7 +110,3 @@ VALUES(
         'London',
         'GB'
     );
--- @BLOCK
-DROP TABLE Vacancies;
---  @BLOCK
-DELETE FROM Companies;
