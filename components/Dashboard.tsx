@@ -1,5 +1,6 @@
 import PostVacancy from './PostVacancy';
 import CreateCompany from './CreateCompany';
+
 import { useState, useEffect } from 'react';
 
 function Dashboard({ userId, userName }) {

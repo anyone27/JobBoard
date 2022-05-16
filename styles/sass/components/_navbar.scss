@@ -14,7 +14,7 @@ nav {
 			padding: 8px;
 			border-radius: 15px;
 			&:hover {
-				background-color: rgba(0, 0, 0, 0.2);
+				background-color: $hover;
 			}
 		}
 	}

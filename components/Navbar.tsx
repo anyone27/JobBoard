@@ -63,18 +63,20 @@ function Navbar() {
 			</section>
 			<section className="heading-right">
 				{!loggedIn && (
-					<Link href="/login">
-						<a>Login</a>
-					</Link>
+					<>
+						<Link href="/login">
+							<a>Login</a>
+						</Link>
+						<Link href="/register">
+							<a>Register</a>
+						</Link>
+					</>
 				)}
 				{loggedIn && (
 					<Link href="/">
 						<a onClick={signOut}>Logout</a>
 					</Link>
 				)}
-				<Link href="/register">
-					<a>Register</a>
-				</Link>
 			</section>
 		</nav>
 	);

@@ -2,8 +2,8 @@ import Router from 'next/router';
 
 function CreateCompany({ userId }) {
 	const createCompany = async (event) => {
-		// event.preventDefault();
-		const res = await fetch('./api/companies/', {
+		event.preventDefault();
+		const res = await fetch('./api/companies', {
 			body: JSON.stringify({
 				company_name: event.target.companyname.value,
 				company_website: event.target.companywebsite.value,
@@ -17,7 +17,7 @@ function CreateCompany({ userId }) {
 			method: 'POST',
 		});
 		if (res.ok) {
-			Router.push('/');
+			Router.reload();
 		}
 	};
 

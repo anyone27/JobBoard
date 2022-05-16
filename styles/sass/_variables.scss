@@ -1,8 +1,8 @@
-$darkText: rgb(37, 44, 37);
-$lightText: white;
+$brand-color: #475569;
+$dark-color: #819abd;
+$mid-color: #cbd5e1;
+$light-color: #f8fafc;
 
-$primaryColour: rgb(218, 218, 218);
-$secondaryColour: white;
-$backgroundColour: gray;
-
-$border: 2px gray solid;
+$border: 2px $dark-color solid;
+$hover: darken($brand-color, 10);
+$light-hover: darken($light-color, 20);

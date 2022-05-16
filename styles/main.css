@@ -13,12 +13,18 @@ a {
 }
 
 button {
-  border: 2px gray solid;
+  border: 2px #819abd solid;
   border-radius: 10px;
   min-width: 100px;
   height: 30px;
   padding: 5px;
   margin: 10px;
+  background-color: #cbd5e1;
+  color: #475569;
+  font-weight: bold;
+}
+button:hover {
+  background-color: #b1c7dd;
 }
 
 * {
@@ -31,10 +37,11 @@ nav {
   width: 100%;
   height: 10vh;
   padding: 1%;
-  color: rgb(37, 44, 37);
+  background-color: #475569;
+  color: #f8fafc;
   display: flex;
   justify-content: space-between;
-  border-bottom: 2px gray solid;
+  border-bottom: 2px #819abd solid;
 }
 
 main {
@@ -42,7 +49,7 @@ main {
   width: 100%;
   display: flex;
   justify-content: center;
-  color: rgb(37, 44, 37);
+  background: #f8fafc;
 }
 
 footer {
@@ -50,8 +57,9 @@ footer {
   position: relative;
   bottom: 0;
   width: 100%;
-  border-top: 2px gray solid;
-  color: rgb(37, 44, 37);
+  border-top: 2px #819abd solid;
+  background-color: #475569;
+  color: #f8fafc;
 }
 
 .loading {
@@ -88,7 +96,7 @@ nav .heading-right a {
 }
 nav .heading-left a:hover,
 nav .heading-right a:hover {
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color: #323c4b;
 }
 
 .main-container {
@@ -98,11 +106,34 @@ nav .heading-right a:hover {
   text-align: justify;
 }
 
+.vacancy {
+  margin: 20px;
+  padding: 20px;
+  border-radius: 10px;
+  border: #475569 2px solid;
+  background-color: #819abd;
+}
+.vacancy .jobtitle {
+  color: #475569;
+  margin-bottom: 10px;
+}
+.vacancy .company {
+  color: #475569;
+  margin-bottom: 10px;
+}
+.vacancy .jobdescription {
+  color: #cbd5e1;
+  margin-bottom: 10px;
+}
+.vacancy .paybands {
+  color: #f8fafc;
+}
+
 form {
   width: 100%;
   display: flex;
   flex-direction: column;
-  border: 2px gray solid;
+  border: 2px #819abd solid;
   padding: 20px;
   align-items: center;
 }
@@ -113,7 +144,7 @@ form .form-item {
 }
 form .form-item input,
 form .form-item select {
-  border: 2px gray solid;
+  border: 2px #819abd solid;
   border-radius: 10px;
   width: 100%;
   height: 40px;
@@ -121,7 +152,7 @@ form .form-item select {
   padding: 10px;
 }
 form .form-item textarea {
-  border: 2px gray solid;
+  border: 2px #819abd solid;
   border-radius: 10px;
   width: 100%;
   height: 40px;

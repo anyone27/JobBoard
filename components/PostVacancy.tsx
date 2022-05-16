@@ -37,10 +37,11 @@ function PostJobs({ userId, companyArray }) {
 		event.preventDefault();
 
 		// Validate that the lower pay and upper pay are correlated
-		if (event.target.lowerpay.value > event.target.upperpay.value) {
+		if (
+			isPayRange &&
+			event.target.lowerpay.value > event.target.upperpay.value
+		) {
 			alert('lowerpay band is greater than upper pay band');
-		} else if (event.target.upperpay.value < event.target.lowerpay.value) {
-			alert('upperpay band is less than lower pay band');
 		} else {
 			console.log('jobtitle', event.target.jobtitle.value);
 			// Submit data to api
@@ -104,15 +105,33 @@ function PostJobs({ userId, companyArray }) {
 
 				{/* Enter the lower pay bracket and the upper pay bracket if it is a range */}
 				<div className="form-item required-item">
-					<input
-						id="lowerpay"
-						type="number"
-						placeholder="Lower Payband"
-						required
-					/>
-
 					{isPayRange && (
-						<input id="upperpay" type="number" placeholder="Upper Payband" />
+						<>
+							<input
+								id="lowerpay"
+								type="number"
+								placeholder="Lower Payband"
+								required
+							/>
+							<input id="upperpay" type="number" placeholder="Upper Payband" />
+						</>
+					)}
+					{!isPayRange && (
+						<>
+							<input
+								id="lowerpay"
+								type="number"
+								placeholder="Salary/hourly pay"
+								required
+							/>
+							<input
+								id="upperpay"
+								type="number"
+								placeholder="Upper Payband"
+								defaultValue={0}
+								hidden
+							/>
+						</>
 					)}
 
 					<div className="checkbox">
@@ -170,7 +189,7 @@ function PostJobs({ userId, companyArray }) {
 						</option>
 						<option value="onsite">Onsite</option>
 						<option value="remote">Remote</option>
-						<option value="hybrid">Hyrbid</option>
+						<option value="hybrid">Hybrid</option>
 					</select>
 				</div>
 

@@ -40,13 +40,16 @@ function Login() {
 		<section className="main-container">
 			<h1>Login</h1>
 			<form onSubmit={loginUser}>
-				<div className="form-item">
-					<label htmlFor="email">Email</label>
-					<input id="email" type="email" required={true} />
+				<div className="form-item required-item">
+					<input id="email" type="email" placeholder="Email" required />
 				</div>
-				<div className="form-item">
-					<label htmlFor="password">Password</label>
-					<input id="password" type="password" required={true} />
+				<div className="form-item required-item">
+					<input
+						id="password"
+						type="password"
+						placeholder="Password"
+						required
+					/>
 				</div>
 				<button type="submit">Log In</button>
 			</form>

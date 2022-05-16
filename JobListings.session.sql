@@ -39,7 +39,7 @@ CREATE TABLE Vacancies(
     user_id INT NOT NULL,
     company_id INT NOT NULL,
     job_title VARCHAR(255) NOT NULL,
-    position_description VARCHAR(1020) NOT NULL,
+    position_description VARCHAR(10200) NOT NULL,
     city VARCHAR(255),
     fulltime_parttime_contract VARCHAR(8) NOT NULL,
     country_code VARCHAR(2),

@@ -2,7 +2,9 @@ import db from '../../db';
 
 export default async function Jobpost(req, res) {
 	if (req.method === 'GET') {
-		res.status(200).json({ message: 'This is a GET request' });
+		let query = await db({ query: 'SELECT * FROM Vacancies', values: '' });
+		console.log('query', query);
+		res.send(query);
 	} else if (req.method === 'POST') {
 		const insert = [
 			req.body.userId,

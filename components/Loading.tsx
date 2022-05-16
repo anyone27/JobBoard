@@ -1,4 +1,5 @@
 import { NewtonsCradle } from '@uiball/loaders';
+
 function Loading() {
 	return (
 		<span className="loading">

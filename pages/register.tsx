@@ -40,21 +40,27 @@ function Register() {
 		<section className="main-container">
 			<h1>Register</h1>
 			<form onSubmit={registerUser}>
-				<div className="form-item">
-					<label htmlFor="first_name">First Name</label>
-					<input id="first_name" type="text" required={true} />
+				<div className="form-item required-item">
+					<input
+						id="first_name"
+						type="text"
+						placeholder="First Name"
+						required
+					/>
 				</div>
-				<div className="form-item">
-					<label htmlFor="surname">Surname</label>
-					<input id="surname" type="text" required={true} />
+				<div className="form-item required-item">
+					<input id="surname" type="text" placeholder="Surname" required />
 				</div>
-				<div className="form-item">
-					<label htmlFor="email">Email</label>
-					<input id="email" type="email" required={true} />
+				<div className="form-item required-item">
+					<input id="email" type="email" placeholder="Email" required />
 				</div>
-				<div className="form-item">
-					<label htmlFor="password">Password</label>
-					<input id="password" type="password" required={true} />
+				<div className="form-item required-item">
+					<input
+						id="password"
+						type="password"
+						placeholder="Password"
+						required
+					/>
 				</div>
 				<button type="submit">Register</button>
 			</form>
