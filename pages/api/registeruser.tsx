@@ -28,7 +28,7 @@ export default async function registerUser(req, res) {
 				values: req.body.email,
 			});
 
-			console.log('response', response[0]);
+			// console.log('response', response[0]);
 
 			if (!response[0]) {
 				console.log('Email not recognised');
@@ -40,7 +40,7 @@ export default async function registerUser(req, res) {
 						id: response[0].id,
 						name: response[0].first_name,
 					};
-					console.log(userInfo);
+					// console.log(userInfo);
 					res.send([true, userInfo]);
 				}
 			}

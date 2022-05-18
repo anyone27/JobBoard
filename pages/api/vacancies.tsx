@@ -3,7 +3,7 @@ import db from '../../db';
 export default async function Jobpost(req, res) {
 	if (req.method === 'GET') {
 		let query = await db({ query: 'SELECT * FROM Vacancies', values: '' });
-		console.log('query', query);
+		// console.log('query', query);
 		res.send(query);
 	} else if (req.method === 'POST') {
 		const insert = [
@@ -21,14 +21,14 @@ export default async function Jobpost(req, res) {
 			req.body.expires,
 		];
 
-		console.log('INSERT', insert);
+		// console.log('INSERT', insert);
 		let query = await db({
 			query:
 				'INSERT INTO Vacancies (user_id, company_id, job_title, position_description, city, fulltime_parttime_contract, country_code, currency_symbol,lower_pay_threshold, upper_pay_threshold, onsite_remote_hybrid, expires_days) VALUES (?)',
 			values: [insert],
 		});
 
-		console.log('query', query);
+		// console.log('query', query);
 		res.send('Vacancy posted');
 	}
 }

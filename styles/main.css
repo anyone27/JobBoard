@@ -19,8 +19,8 @@ button {
   height: 30px;
   padding: 5px;
   margin: 10px;
-  background-color: #cbd5e1;
-  color: #475569;
+  background-color: #819abd;
+  color: #f8fafc;
   font-weight: bold;
 }
 button:hover {
@@ -106,29 +106,6 @@ nav .heading-right a:hover {
   text-align: justify;
 }
 
-.vacancy {
-  margin: 20px;
-  padding: 20px;
-  border-radius: 10px;
-  border: #475569 2px solid;
-  background-color: #819abd;
-}
-.vacancy .jobtitle {
-  color: #475569;
-  margin-bottom: 10px;
-}
-.vacancy .company {
-  color: #475569;
-  margin-bottom: 10px;
-}
-.vacancy .jobdescription {
-  color: #cbd5e1;
-  margin-bottom: 10px;
-}
-.vacancy .paybands {
-  color: #f8fafc;
-}
-
 form {
   width: 100%;
   display: flex;
@@ -170,6 +147,65 @@ form .form-item input[type=checkbox] {
 form .required-item::after {
   content: "*";
   color: red;
+}
+
+.vacancy-card {
+  margin: 20px;
+  padding: 20px;
+  border-radius: 10px;
+  border: #475569 2px solid;
+  background-color: #819abd;
+}
+.vacancy-card .jobtitle {
+  color: #475569;
+  margin-bottom: 10px;
+}
+.vacancy-card .company {
+  color: #475569;
+  margin-bottom: 10px;
+}
+.vacancy-card .jobdescription {
+  color: #cbd5e1;
+  margin-bottom: 10px;
+}
+.vacancy-card .paybands {
+  color: #f8fafc;
+}
+
+.vacancy {
+  width: 60%;
+  margin: 20px;
+  padding: 20px;
+  border-radius: 10px;
+  border: #475569 2px solid;
+  background-color: #819abd;
+  overflow: scroll;
+}
+.vacancy .jobtitle {
+  color: #cbd5e1;
+  margin-bottom: 10px;
+  text-decoration: underline;
+}
+.vacancy .company {
+  color: #475569;
+  margin-bottom: 10px;
+}
+.vacancy .jobdescription {
+  color: #cbd5e1;
+  margin-bottom: 10px;
+}
+.vacancy .paybands {
+  color: #f8fafc;
+}
+.vacancy .job_details {
+  width: 250px;
+  color: #f8fafc;
+  border-radius: 10px;
+  border: 1px #f8fafc solid;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  line-height: 1.5em;
 }
 
 /*# sourceMappingURL=main.css.map */

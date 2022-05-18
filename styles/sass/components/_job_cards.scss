@@ -1,0 +1,60 @@
+.vacancy-card {
+	margin: 20px;
+	padding: 20px;
+	border-radius: 10px;
+	// border: $border;
+	border: $brand-color 2px solid;
+	background-color: $dark-color;
+	.jobtitle {
+		color: $brand-color;
+		margin-bottom: 10px;
+	}
+	.company {
+		color: $brand-color;
+		margin-bottom: 10px;
+	}
+	.jobdescription {
+		color: $mid-color;
+		margin-bottom: 10px;
+	}
+	.paybands {
+		color: $light-color;
+	}
+}
+
+.vacancy {
+	width: 60%;
+	margin: 20px;
+	padding: 20px;
+	border-radius: 10px;
+	border: $brand-color 2px solid;
+	background-color: $dark-color;
+	overflow: scroll;
+	.jobtitle {
+		color: $mid-color;
+		margin-bottom: 10px;
+		text-decoration: underline;
+	}
+	.company {
+		color: $brand-color;
+		margin-bottom: 10px;
+	}
+	.jobdescription {
+		color: $mid-color;
+		margin-bottom: 10px;
+	}
+	.paybands {
+		// @include border-style;
+		color: $light-color;
+	}
+	.job_details {
+		width: 250px;
+		color: $light-color;
+		border-radius: 10px;
+		border: 1px $light-color solid;
+		padding: 20px;
+		display: flex;
+		justify-content: center;
+		line-height: 1.5em;
+	}
+}

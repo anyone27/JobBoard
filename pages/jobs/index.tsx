@@ -6,7 +6,7 @@ import Vacancies from '../../components/Vacancies';
 export async function getServerSideProps(req, res) {
 	let query = await db({
 		query:
-			'SELECT * FROM Vacancies INNER JOIN Companies ON Vacancies.company_id=Companies.id ORDER BY Vacancies.created DESC LIMIT 30',
+			'SELECT Vacancies.id, Companies.name, job_title, position_description, city, fulltime_parttime_contract, country_code, currency_symbol, lower_pay_threshold, upper_pay_threshold, onsite_remote_hybrid, created, expires_days FROM Vacancies INNER JOIN Companies ON Vacancies.company_id = Companies.id ORDER BY Vacancies.created DESC',
 		values: '',
 	});
 

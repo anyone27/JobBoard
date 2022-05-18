@@ -4,27 +4,3 @@
 	overflow: auto;
 	text-align: justify;
 }
-
-.vacancy {
-	margin: 20px;
-	padding: 20px;
-	border-radius: 10px;
-	// border: $border;
-	border: $brand-color 2px solid;
-	background-color: $dark-color;
-	.jobtitle {
-		color: $brand-color;
-		margin-bottom: 10px;
-	}
-	.company {
-		color: $brand-color;
-		margin-bottom: 10px;
-	}
-	.jobdescription {
-		color: $mid-color;
-		margin-bottom: 10px;
-	}
-	.paybands {
-		color: $light-color;
-	}
-}

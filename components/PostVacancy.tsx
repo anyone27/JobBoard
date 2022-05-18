@@ -187,9 +187,9 @@ function PostJobs({ userId, companyArray }) {
 						<option value="" disabled selected>
 							is this role Onsite, Remote or Hybrid?
 						</option>
-						<option value="onsite">Onsite</option>
-						<option value="remote">Remote</option>
-						<option value="hybrid">Hybrid</option>
+						<option value="On Site">Onsite</option>
+						<option value="Remote">Remote</option>
+						<option value="Hybrid">Hybrid</option>
 					</select>
 				</div>
 
@@ -203,9 +203,9 @@ function PostJobs({ userId, companyArray }) {
 						<option value="" disabled selected>
 							is this role Fulltime, Parttime or Contract?
 						</option>
-						<option value="fulltime">Fulltime</option>
-						<option value="parttime">Parttime</option>
-						<option value="contract">Contract</option>
+						<option value="Full Time">Full time</option>
+						<option value="Part Time">Part time</option>
+						<option value="Contract">Contract</option>
 					</select>
 				</div>
 
