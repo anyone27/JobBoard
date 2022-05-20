@@ -13,5 +13,8 @@
 			"database": "joblistings",
 			"username": "josh"
 		}
-	]
+	],
+	"todo-tree.tree.showCountsInTree": true,
+	"todo-tree.tree.disableCompactFolders": false,
+	"todo-tree.tree.showBadges": true
 }

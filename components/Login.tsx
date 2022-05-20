@@ -1,24 +1,24 @@
 import Router from 'next/router';
 
-function Register() {
-	const registerUser = async (event) => {
+function Login() {
+	const loginUser = async (event) => {
 		event.preventDefault();
+
 		const password = event.target.password.value;
 
-		const res = await fetch('./api/registeruser', {
+		const response = await fetch('./api/loginuser', {
+			method: 'POST',
 			body: JSON.stringify({
-				first_name: event.target.first_name.value,
-				surname: event.target.surname.value,
+				// TODO hash password
 				email: event.target.email.value,
 				password: password,
 			}),
 			headers: {
 				'Content-Type': 'application/json',
 			},
-			method: 'POST',
 		});
-		if (res.ok) {
-			let json = await res.json();
+		if (response.ok) {
+			let json = await response.json();
 			if (json[0] === false && json[1] === 1) {
 				console.log('Email not recognised');
 				alert('Email not recognised');
@@ -26,31 +26,21 @@ function Register() {
 				console.log('Incorrect Password');
 				alert('Incorrect Password');
 			} else if (json[0] === true) {
+				console.log('logged in successfully ');
 				localStorage.setItem('loggedIn', 'true');
 				localStorage.setItem('userId', json[1].id);
 				localStorage.setItem('userName', json[1].name);
-				Router.push('/dashboard');
+				Router.push('/');
 			}
 		} else {
-			alert('HTTP-Error: ' + res.status);
+			alert('HTTP-Error: ' + response.status);
 		}
 	};
 
 	return (
 		<section className="main-container">
-			<h1>Register</h1>
-			<form onSubmit={registerUser}>
-				<div className="form-item required-item">
-					<input
-						id="first_name"
-						type="text"
-						placeholder="First Name"
-						required
-					/>
-				</div>
-				<div className="form-item required-item">
-					<input id="surname" type="text" placeholder="Surname" required />
-				</div>
+			<h1>Login</h1>
+			<form onSubmit={loginUser}>
 				<div className="form-item required-item">
 					<input id="email" type="email" placeholder="Email" required />
 				</div>
@@ -62,10 +52,10 @@ function Register() {
 						required
 					/>
 				</div>
-				<button type="submit">Register</button>
+				<button type="submit">Log In</button>
 			</form>
 		</section>
 	);
 }
 
-export default Register;
+export default Login;

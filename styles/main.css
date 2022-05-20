@@ -106,8 +106,20 @@ nav .heading-right a:hover {
   text-align: justify;
 }
 
+.search-bar {
+  width: 80%;
+}
+.search-bar input {
+  width: 80%;
+  height: 30px;
+  border: 2px #819abd solid;
+  border-radius: 5px;
+}
+
 form {
-  width: 100%;
+  border: 2px #819abd solid;
+  border-radius: 10px;
+  width: 95%;
   display: flex;
   flex-direction: column;
   border: 2px #819abd solid;
@@ -123,7 +135,7 @@ form .form-item input,
 form .form-item select {
   border: 2px #819abd solid;
   border-radius: 10px;
-  width: 100%;
+  width: 95%;
   height: 40px;
   margin: 10px;
   padding: 10px;
@@ -131,7 +143,7 @@ form .form-item select {
 form .form-item textarea {
   border: 2px #819abd solid;
   border-radius: 10px;
-  width: 100%;
+  width: 95%;
   height: 40px;
   margin: 10px;
   padding: 10px;
@@ -150,62 +162,83 @@ form .required-item::after {
 }
 
 .vacancy-card {
-  margin: 20px;
+  width: 95%;
+  border: #819abd 2px solid;
+  background-color: #475569;
+  margin: 20px 0;
   padding: 20px;
+  box-shadow: #819abd 2px 2px 5px;
+  border: 2px #819abd solid;
   border-radius: 10px;
-  border: #475569 2px solid;
-  background-color: #819abd;
 }
 .vacancy-card .jobtitle {
-  color: #475569;
+  color: #f8fafc;
   margin-bottom: 10px;
+  text-decoration: underline;
 }
 .vacancy-card .company {
-  color: #475569;
-  margin-bottom: 10px;
-}
-.vacancy-card .jobdescription {
-  color: #cbd5e1;
+  color: #819abd;
   margin-bottom: 10px;
 }
 .vacancy-card .paybands {
   color: #f8fafc;
 }
+.vacancy-card .jobdescription {
+  color: #cbd5e1;
+  margin-bottom: 10px;
+}
+.vacancy-card .job_details {
+  width: 250px;
+  color: #f8fafc;
+  border-radius: 10px;
+  border: 1px #819abd solid;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  line-height: 1.5em;
+}
 
 .vacancy {
-  width: 60%;
-  margin: 20px;
+  width: 95%;
+  border: #819abd 2px solid;
+  background-color: #475569;
+  margin: 20px 0;
   padding: 20px;
+  box-shadow: #819abd 2px 2px 5px;
+  border: 2px #819abd solid;
   border-radius: 10px;
-  border: #475569 2px solid;
-  background-color: #819abd;
+  width: 60%;
   overflow: scroll;
 }
 .vacancy .jobtitle {
-  color: #cbd5e1;
+  color: #f8fafc;
   margin-bottom: 10px;
   text-decoration: underline;
 }
 .vacancy .company {
-  color: #475569;
-  margin-bottom: 10px;
-}
-.vacancy .jobdescription {
-  color: #cbd5e1;
+  color: #819abd;
   margin-bottom: 10px;
 }
 .vacancy .paybands {
   color: #f8fafc;
 }
+.vacancy .jobdescription {
+  color: #cbd5e1;
+  margin-bottom: 10px;
+}
 .vacancy .job_details {
   width: 250px;
   color: #f8fafc;
   border-radius: 10px;
-  border: 1px #f8fafc solid;
+  border: 1px #819abd solid;
   padding: 20px;
   display: flex;
   justify-content: center;
   line-height: 1.5em;
+}
+
+.toggle-collapse {
+  cursor: pointer;
 }
 
 /*# sourceMappingURL=main.css.map */

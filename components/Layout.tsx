@@ -2,6 +2,7 @@ import Head from 'next/head';
 import Navbar from './Navbar';
 import Sidebar from './Sidebar';
 import Footer from './Footer';
+import Script from 'next/script';
 
 export default function Layout({ children }) {
 	return (
@@ -10,6 +11,7 @@ export default function Layout({ children }) {
 				<title>Job Listings</title>
 				<meta name="keywords" content="job listings" />
 			</Head>
+
 			<Navbar />
 			{/* <Sidebar /> */}
 			<main>{children}</main>

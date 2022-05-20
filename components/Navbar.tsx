@@ -9,16 +9,14 @@ function Navbar() {
 	const router = useRouter();
 
 	function verifyLoggedIn() {
-		let temp1 = localStorage.getItem('loggedIn');
-		if (temp1 === 'true') {
+		let verifyStatus = localStorage.getItem('loggedIn');
+		if (verifyStatus === 'true') {
 			setLoggedIn(true);
 		}
 
-		let temp2 = localStorage.getItem('userId');
-		setUserId(temp2);
+		setUserId(localStorage.getItem('userId'));
 
-		let temp3 = localStorage.getItem('userName');
-		setUserName(temp3);
+		setUserName(localStorage.getItem('userName'));
 	}
 
 	useEffect(() => {
@@ -28,7 +26,9 @@ function Navbar() {
 	function signOut() {
 		localStorage.clear();
 		setLoggedIn(false);
-		router.reload();
+		setUserId('');
+		setUserName('');
+		router.push('/');
 	}
 
 	return (
@@ -38,7 +38,7 @@ function Navbar() {
 					<a className="logo">JobListings</a>
 				</Link>
 				{loggedIn && (
-					<Link href="/">
+					<Link href="/dashboard">
 						<a>Dashboard</a>
 					</Link>
 				)}
@@ -56,7 +56,7 @@ function Navbar() {
 					</Link>
 				)}
 				{loggedIn && (
-					<Link href="/about">
+					<Link href="/">
 						<a>About</a>
 					</Link>
 				)}

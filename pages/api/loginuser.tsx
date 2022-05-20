@@ -9,9 +9,7 @@ export default async function registerUser(req, res) {
 				'SELECT id, first_name, hashed_password from Users WHERE email = ?',
 			values: req.body.email,
 		});
-
-		console.log(validate[0]);
-
+		// TODO validate and return JWT
 		if (!validate[0]) {
 			console.log('Email not recognised');
 			res.send([false, 1]);
@@ -22,7 +20,7 @@ export default async function registerUser(req, res) {
 					id: validate[0].id,
 					name: validate[0].first_name,
 				};
-				console.log(userInfo);
+
 				res.send([true, userInfo]);
 			} else {
 				console.log('incorrect password');

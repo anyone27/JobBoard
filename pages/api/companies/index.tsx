@@ -1,6 +1,15 @@
 import db from '../../../db';
 
 export default async function registerCompany(req, res) {
+	if (req.method === 'GET') {
+		// TODO query companies
+		let query = await db({
+			query: 'SELECT Companies.id, Companies.name FROM Companies',
+			values: '',
+		});
+		res.send(query);
+	}
+
 	const insert = [
 		req.body.company_name,
 		req.body.company_website,

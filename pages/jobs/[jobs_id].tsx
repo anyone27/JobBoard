@@ -1,4 +1,3 @@
-import { useRouter } from 'next/router';
 import db from '../../db';
 import currencyCodes from '../../currencycodes.json';
 
@@ -34,6 +33,8 @@ function JobPost({ query }) {
 					<li>Remote/onsite: {query.onsite_remote_hybrid}</li>
 				</ul>
 			</div>
+			{/* TODO Apply button */}
+			<button>Apply</button>
 		</div>
 	);
 }

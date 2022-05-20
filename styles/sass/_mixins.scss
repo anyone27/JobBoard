@@ -4,8 +4,43 @@
 }
 
 @mixin form-style {
-	width: 100%;
+	width: 95%;
 	height: 40px;
 	margin: 10px;
 	padding: 10px;
+}
+
+@mixin card-style {
+	width: 95%;
+	border: $dark-color 2px solid;
+	background-color: $brand-color;
+	margin: 20px 0;
+	padding: 20px;
+	box-shadow: $dark-color 2px 2px 5px;
+	.jobtitle {
+		color: $light-color;
+		margin-bottom: 10px;
+		text-decoration: underline;
+	}
+	.company {
+		color: $dark-color;
+		margin-bottom: 10px;
+	}
+	.paybands {
+		color: $light-color;
+	}
+	.jobdescription {
+		color: $mid-color;
+		margin-bottom: 10px;
+	}
+	.job_details {
+		width: 250px;
+		color: $light-color;
+		border-radius: 10px;
+		border: 1px $dark-color solid;
+		padding: 20px;
+		display: flex;
+		justify-content: center;
+		line-height: 1.5em;
+	}
 }

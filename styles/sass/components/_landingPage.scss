@@ -4,3 +4,13 @@
 	overflow: auto;
 	text-align: justify;
 }
+
+.search-bar {
+	width: 80%;
+	input {
+		width: 80%;
+		height: 30px;
+		border: $border;
+		border-radius: 5px;
+	}
+}

@@ -6,21 +6,15 @@ function Profile() {
 	const [userId, setUserId] = useState('');
 
 	function verifyLoggedIn() {
-		let temp1 = localStorage.getItem('loggedIn');
-		if (temp1 === 'true') {
+		if (localStorage.getItem('loggedIn') === 'true') {
 			setLoggedIn(true);
 		}
-
-		let temp2 = localStorage.getItem('userId');
-		setUserId(temp2);
-
-		let temp3 = localStorage.getItem('userName');
-		setUserName(temp3);
+		setUserId(localStorage.getItem('userId'));
+		setUserName(localStorage.getItem('userName'));
 	}
 
 	useEffect(() => {
 		verifyLoggedIn();
-		// console.log('verifyLoggedIn', loggedIn);
 	});
 
 	return (

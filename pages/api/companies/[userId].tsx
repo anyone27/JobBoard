@@ -7,7 +7,7 @@ export default async function Companies(req, res) {
 				'SELECT company_id, name FROM Companies INNER JOIN Employees ON Companies.id = Employees.company_id WHERE Employees.user_id = ?',
 			values: req.query.userId,
 		});
-		// console.log(data);
+
 		res.send(data);
 	}
 }

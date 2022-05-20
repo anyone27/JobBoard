@@ -1,5 +1,6 @@
 form {
-	width: 100%;
+	@include border-style;
+	width: 95%;
 	display: flex;
 	flex-direction: column;
 	border: $border;

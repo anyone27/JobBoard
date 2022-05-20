@@ -1,8 +1,11 @@
-import db from '../../db';
+import db from '../../../db';
 
 export default async function Jobpost(req, res) {
 	if (req.method === 'GET') {
-		let query = await db({ query: 'SELECT * FROM Vacancies', values: '' });
+		let query = await db({
+			query: 'SELECT * FROM Vacancies',
+			values: '',
+		});
 		// console.log('query', query);
 		res.send(query);
 	} else if (req.method === 'POST') {
