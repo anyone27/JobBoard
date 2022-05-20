@@ -4,6 +4,21 @@ import currencyCodes from '../../currencycodes.json';
 function JobPost({ query }) {
 	let currencySymbol = '';
 	let pay = '';
+	// console.log(userId);
+
+	const handleApply = async (job_id) => {
+		const userId = Number(localStorage.getItem('userId'));
+		const result = await fetch('../api/applications', {
+			method: 'POST',
+			body: JSON.stringify({
+				userId: userId,
+				job_id: job_id,
+			}),
+			headers: {
+				'Content-Type': 'application/json',
+			},
+		});
+	};
 
 	for (let currency in currencyCodes) {
 		if (currencyCodes[currency].code === query.currency_symbol) {
@@ -19,6 +34,7 @@ function JobPost({ query }) {
 	} else {
 		pay = currencySymbol.concat(lower_pay);
 	}
+
 	return (
 		<div className="vacancy">
 			<h2 className="jobtitle">{query.job_title}</h2>
@@ -34,7 +50,7 @@ function JobPost({ query }) {
 				</ul>
 			</div>
 			{/* TODO Apply button */}
-			<button>Apply</button>
+			<button onClick={() => handleApply(query.id)}>Apply</button>
 		</div>
 	);
 }

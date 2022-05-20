@@ -45,18 +45,19 @@ function DashboardPage() {
 		if (userId !== '') {
 			const res = await fetch(`/api/applications/${userId}`);
 			let data = await res.json();
-			// console.log('data', data);
-			setApplicationArray(
-				data.map(function (element) {
-					return (
-						<div className="application-card" key={element.id}>
-							<h2>{element.job_title}</h2>
-							<h3>{element.name}</h3>
-							<p>{element.position_description}</p>
-						</div>
-					);
-				})
-			);
+			console.log('data', data);
+			// setApplicationArray(
+			// 	data.map(function (element) {
+			// 		return (
+			// 			<div className="application-card" key={element.id}>
+			// 				<h2>{element.user_id}</h2>
+			// 				<h3>{element.vacancy_id}</h3>
+			// 				{/* <p>{element.position_description}</p> */}
+			// 			</div>
+			// 		);
+			// 	})
+			// );
+			console.log(applicationArray);
 		}
 	};
 
