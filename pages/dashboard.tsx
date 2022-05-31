@@ -125,6 +125,7 @@ function DashboardPage() {
 
 	return (
 		<section className="main-container">
+			<h1>REFACTORING</h1>
 			<h1>{userName}&apos;s Dashboard</h1>
 			<button onClick={postJobForm}>Post Vacancy</button>
 			<button onClick={createCompanyForm}>Register Company</button>
