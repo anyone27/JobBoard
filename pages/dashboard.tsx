@@ -25,47 +25,39 @@ function DashboardPage() {
 			setUserId(localStorage.getItem('userId'));
 			setUserName(localStorage.getItem('userName'));
 		} else {
+			setLoggedIn(false);
+			setUserId('');
+			setUserName('');
 			router.push('/');
 		}
 	}
+
 	useEffect(() => {
 		verifyLoggedIn();
 	}, []);
 
 	useEffect(() => {
-		recentApplications();
 		recentPostings();
 		fetchCompanies();
+		recentApplication();
 	}, [userId]);
 
-	const recentApplications = async () => {
-		if (!userId) {
-			verifyLoggedIn();
-		}
-		if (userId !== '') {
+	async function recentApplication() {
+		verifyLoggedIn();
+		setApplicationArray([]);
+
+		if (userId != '') {
 			const res = await fetch(`/api/applications/${userId}`);
 			let data = await res.json();
-			console.log('data', data);
-			// setApplicationArray(
-			// 	data.map(function (element) {
-			// 		return (
-			// 			<div className="application-card" key={element.id}>
-			// 				<h2>{element.user_id}</h2>
-			// 				<h3>{element.vacancy_id}</h3>
-			// 				{/* <p>{element.position_description}</p> */}
-			// 			</div>
-			// 		);
-			// 	})
-			// );
-			console.log(applicationArray);
+			setApplicationArray(data);
 		}
-	};
+	}
 
 	const recentPostings = async () => {
-		if (!userId) {
-			verifyLoggedIn();
-		}
-		if (userId !== '') {
+		verifyLoggedIn();
+
+		setPostArray([]);
+		if (userId != '') {
 			const res = await fetch(`/api/vacancies/${userId}`);
 			let data = await res.json();
 			setPostArray(data);
@@ -73,6 +65,8 @@ function DashboardPage() {
 	};
 
 	async function fetchCompanies() {
+		verifyLoggedIn();
+
 		let linkedCompanies = [];
 		let companyArray = [];
 
@@ -143,12 +137,13 @@ function DashboardPage() {
 				<>
 					<h2
 						className="toggle-collapse"
-						onClick={handleDropDown('applications')}
+						onClick={() => handleDropDown('applications')}
 					>
 						Jobs Applied to
 						<Icons direction={displayApplications} />
 					</h2>
-					{displayApplications && { applicationArray }}
+					{/* {displayApplications && applicationArray} */}
+					{displayApplications && <Vacancies vacancies={applicationArray} />}
 				</>
 			)}
 			{postArray.length > 0 && (

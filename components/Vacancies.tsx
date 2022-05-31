@@ -34,6 +34,7 @@ function Vacancies({ vacancies }) {
 			</a>
 		);
 	}
+	// console.log('vacancies', vacancyArray);
 	return vacancyArray;
 }
 

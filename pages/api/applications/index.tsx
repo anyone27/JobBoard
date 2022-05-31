@@ -7,7 +7,8 @@ export default async function PostApplication(req, res) {
 			query: 'INSERT INTO Applications(user_id, vacancy_id) VALUES(?)',
 			values: [insert],
 		});
-		console.log(result);
+		// console.log(result);
 		res.send('application successful');
+	} else {
 	}
 }
