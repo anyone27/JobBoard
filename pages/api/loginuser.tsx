@@ -1,7 +1,7 @@
 import db from '../../db';
 
 export default async function registerUser(req, res) {
-	const query = [req.body.email, req.body.password];
+	const bcrypt = require('bcryptjs');
 
 	if (req.method === 'POST') {
 		const validate = await db({
@@ -9,12 +9,11 @@ export default async function registerUser(req, res) {
 				'SELECT id, first_name, hashed_password from Users WHERE email = ?',
 			values: req.body.email,
 		});
-		// TODO validate and return JWT
 		if (!validate[0]) {
 			console.log('Email not recognised');
 			res.send([false, 1]);
 		} else {
-			if (validate[0].hashed_password === req.body.password) {
+			if (bcrypt.compareSync(req.body.password, validate[0].hashed_password)) {
 				console.log('logged in successfully');
 				let userInfo = {
 					id: validate[0].id,

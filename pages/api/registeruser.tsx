@@ -1,12 +1,10 @@
 import db from '../../db';
 
 export default async function registerUser(req, res) {
-	const insert = [
-		req.body.first_name,
-		req.body.surname,
-		req.body.email,
-		req.body.password,
-	];
+	const bcrypt = require('bcryptjs');
+	let hash = bcrypt.hashSync(req.body.password, 14);
+
+	const insert = [req.body.first_name, req.body.surname, req.body.email, hash];
 
 	if (req.method === 'POST') {
 		let validate = await db({
@@ -34,7 +32,7 @@ export default async function registerUser(req, res) {
 				console.log('Email not recognised');
 				res.send([false, 1]);
 			} else {
-				if (response[0].hashed_password === req.body.password) {
+				if (response[0].hashed_password === hash) {
 					console.log('logged in successfully');
 					let userInfo = {
 						id: response[0].id,
