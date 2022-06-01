@@ -6,6 +6,7 @@ function Register() {
 		const password = event.target.password.value;
 
 		const res = await fetch('./api/registeruser', {
+			method: 'POST',
 			body: JSON.stringify({
 				first_name: event.target.first_name.value,
 				surname: event.target.surname.value,
@@ -15,7 +16,6 @@ function Register() {
 			headers: {
 				'Content-Type': 'application/json',
 			},
-			method: 'POST',
 		});
 		if (res.ok) {
 			let json = await res.json();

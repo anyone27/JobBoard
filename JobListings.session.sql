@@ -7,6 +7,7 @@ CREATE TABLE Users(
     hashed_password VARCHAR(255) NOT NULL,
     location VARCHAR(255),
     country_code VARCHAR(2),
+    -- TODO CV
     flagged BOOLEAN
 );
 -- @BLOCK
@@ -17,6 +18,7 @@ CREATE TABLE Companies(
     name VARCHAR(255) UNIQUE NOT NULL,
     website VARCHAR(255),
     description VARCHAR(1020),
+    -- TODO Logo
     flagged BOOLEAN
 );
 --  @BLOCK
@@ -92,7 +94,7 @@ INSERT INTO Users (
         email,
         hashed_password,
         location,
-        country_code
+        country_code,
     )
 VALUES(
         'Josh',

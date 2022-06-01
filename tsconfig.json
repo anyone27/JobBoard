@@ -1,30 +1,51 @@
 {
-  "compilerOptions": {
-    "target": "es5",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
-    "allowJs": true,
-    "skipLibCheck": true,
-    "strict": false,
-    "forceConsistentCasingInFileNames": true,
-    "noEmit": true,
-    "incremental": true,
-    "esModuleInterop": true,
-    "module": "esnext",
-    "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "jsx": "preserve"
-  },
-  "include": [
-    "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx"
-  ],
-  "exclude": [
-    "node_modules"
-  ]
+	"compilerOptions": {
+		"target": "es5",
+		"lib": ["dom", "dom.iterable", "esnext"],
+		"allowJs": true,
+		"skipLibCheck": true,
+		"strict": false,
+		"forceConsistentCasingInFileNames": true,
+		"noEmit": true,
+		"incremental": true,
+		"esModuleInterop": true,
+		"module": "esnext",
+		"moduleResolution": "node",
+		"resolveJsonModule": true,
+		"isolatedModules": true,
+		"jsx": "preserve"
+	},
+	"include": [
+		"next-env.d.ts",
+		"**/*.ts",
+		"**/*.tsx",
+		"components/Footer.js",
+		"components/Icons.js",
+		"components/Layout.js",
+		"components/Loading.js",
+		"db.js",
+		"components/Login.js",
+		"components/Navbar.js",
+		"components/PostVacancy.js",
+		"components/Sidebar.js",
+		"components/Vacancies.js",
+		"pages/api/applications/[userId].js",
+		"pages/api/applications/index.js",
+		"pages/api/companies/[userId].js",
+		"pages/api/companies/index.js",
+		"pages/api/vacancies/[userId].js",
+		"pages/api/vacancies/index.js",
+		"pages/api/loginuser.js",
+		"pages/api/registeruser.js",
+		"pages/jobs/[jobs_id].js",
+		"pages/register.js",
+		"pages/profile.js",
+		"pages/login.js",
+		"pages/index.js",
+		"pages/dashboard.js",
+		"pages/_app.js",
+		"pages/jobs/index.js",
+		"components/CreateCompany.js"
+	],
+	"exclude": ["node_modules"]
 }

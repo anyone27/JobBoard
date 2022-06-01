@@ -9,7 +9,6 @@ function Login() {
 		const response = await fetch('./api/loginuser', {
 			method: 'POST',
 			body: JSON.stringify({
-				// TODO hash password
 				email: event.target.email.value,
 				password: password,
 			}),
