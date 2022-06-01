@@ -9,14 +9,14 @@ function Navbar() {
 	const router = useRouter();
 
 	function verifyLoggedIn() {
-		let verifyStatus = localStorage.getItem('loggedIn');
+		let verifyStatus = sessionStorage.getItem('loggedIn');
 		if (verifyStatus === 'true') {
 			setLoggedIn(true);
 		}
 
-		setUserId(localStorage.getItem('userId'));
+		setUserId(sessionStorage.getItem('userId'));
 
-		setUserName(localStorage.getItem('userName'));
+		setUserName(sessionStorage.getItem('userName'));
 	}
 
 	useEffect(() => {
@@ -24,7 +24,7 @@ function Navbar() {
 	});
 
 	function signOut() {
-		localStorage.clear();
+		sessionStorage.clear();
 		setLoggedIn(false);
 		setUserId('');
 		setUserName('');

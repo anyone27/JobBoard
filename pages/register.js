@@ -26,9 +26,9 @@ function Register() {
 				console.log('Incorrect Password');
 				alert('Incorrect Password');
 			} else if (json[0] === true) {
-				localStorage.setItem('loggedIn', 'true');
-				localStorage.setItem('userId', json[1].id);
-				localStorage.setItem('userName', json[1].name);
+				sessionStorage.setItem('loggedIn', 'true');
+				sessionStorage.setItem('userId', json[1].id);
+				sessionStorage.setItem('userName', json[1].name);
 				Router.push('/dashboard');
 			}
 		} else {

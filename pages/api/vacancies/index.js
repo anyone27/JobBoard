@@ -32,6 +32,7 @@ export default async function Jobpost(req, res) {
 		});
 
 		// console.log('query', query);
+		// console.log('Vacancy Posted');
 		res.send('Vacancy posted');
 	}
 }

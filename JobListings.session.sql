@@ -7,7 +7,7 @@ CREATE TABLE Users(
     hashed_password VARCHAR(255) NOT NULL,
     location VARCHAR(255),
     country_code VARCHAR(2),
-    -- TODO CV
+    cv_location VARCHAR(255),
     flagged BOOLEAN
 );
 -- @BLOCK
@@ -18,7 +18,7 @@ CREATE TABLE Companies(
     name VARCHAR(255) UNIQUE NOT NULL,
     website VARCHAR(255),
     description VARCHAR(1020),
-    -- TODO Logo
+    logo VARCHAR(255),
     flagged BOOLEAN
 );
 --  @BLOCK
@@ -112,3 +112,5 @@ VALUES(
         'London',
         'GB'
     );
+-- @BLOCK
+DROP TABLE Users;

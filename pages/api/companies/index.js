@@ -21,7 +21,7 @@ export default async function registerCompany(req, res) {
 			query: 'SELECT name FROM Companies WHERE name = ?',
 			values: req.body.company_name,
 		});
-		console.log('validate', validate);
+		// console.log('validate', validate);
 
 		if (validate.length > 0) {
 			console.log('duplicate company exists');
@@ -32,7 +32,7 @@ export default async function registerCompany(req, res) {
 				values: [insert],
 			});
 
-			console.log('result', result);
+			// console.log('result', result);
 
 			const companyid = await db({
 				query: 'SELECT id FROM Companies WHERE name = ?',
@@ -54,7 +54,7 @@ export default async function registerCompany(req, res) {
 				values: [employeeInsert],
 			});
 
-			console.log('employee', employee);
+			// console.log('employee', employee);
 
 			if (res.status(200)) {
 				res.send('company registered');
