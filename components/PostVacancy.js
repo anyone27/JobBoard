@@ -3,12 +3,25 @@ import currencycodes from '../currencycodes.json';
 import { useState, useEffect } from 'react';
 import Router from 'next/router';
 
-function PostJobs(params) {
+function PostJobs({ companyData }) {
 	const [isPayRange, setIsPayRange] = useState(false);
+
 	let countryArray = [];
 	let currencyArray = [];
-	const companyArray = params.companyArray;
-	const userId = params.userId;
+	let companyArray = [];
+
+	const userId = sessionStorage.getItem('userId');
+
+	for (const key in companyData) {
+		companyArray.push(
+			<option
+				key={companyData[key].company_id}
+				value={companyData[key].company_id}
+			>
+				{companyData[key].name}
+			</option>
+		);
+	}
 
 	// populate country selection dropdown
 	for (const key in countrydata) {
@@ -45,7 +58,6 @@ function PostJobs(params) {
 		) {
 			alert('lowerpay band is greater than upper pay band');
 		} else {
-			console.log('jobtitle', event.target.jobtitle.value);
 			// Submit data to api
 			const res = await fetch('./api/vacancies', {
 				method: 'POST',
@@ -69,6 +81,7 @@ function PostJobs(params) {
 				},
 			});
 			if (res.ok) {
+				alert('Vacancy Posted');
 				console.log('successfully posted vacancy');
 				Router.reload();
 			}

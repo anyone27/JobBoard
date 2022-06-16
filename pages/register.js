@@ -6,6 +6,7 @@ function Register() {
 		const password = event.target.password.value;
 
 		const res = await fetch('./api/registeruser', {
+			method: 'POST',
 			body: JSON.stringify({
 				first_name: event.target.first_name.value,
 				surname: event.target.surname.value,
@@ -15,7 +16,6 @@ function Register() {
 			headers: {
 				'Content-Type': 'application/json',
 			},
-			method: 'POST',
 		});
 		if (res.ok) {
 			let json = await res.json();
@@ -26,9 +26,9 @@ function Register() {
 				console.log('Incorrect Password');
 				alert('Incorrect Password');
 			} else if (json[0] === true) {
-				localStorage.setItem('loggedIn', 'true');
-				localStorage.setItem('userId', json[1].id);
-				localStorage.setItem('userName', json[1].name);
+				sessionStorage.setItem('loggedIn', 'true');
+				sessionStorage.setItem('userId', json[1].id);
+				sessionStorage.setItem('userName', json[1].name);
 				Router.push('/dashboard');
 			}
 		} else {

@@ -7,6 +7,8 @@ CREATE TABLE Users(
     hashed_password VARCHAR(255) NOT NULL,
     location VARCHAR(255),
     country_code VARCHAR(2),
+    cv_location VARCHAR(255),
+    auth_token VARCHAR(255),
     flagged BOOLEAN
 );
 -- @BLOCK
@@ -17,6 +19,7 @@ CREATE TABLE Companies(
     name VARCHAR(255) UNIQUE NOT NULL,
     website VARCHAR(255),
     description VARCHAR(1020),
+    logo VARCHAR(255),
     flagged BOOLEAN
 );
 --  @BLOCK
@@ -39,6 +42,7 @@ CREATE TABLE Vacancies(
     user_id INT NOT NULL,
     company_id INT NOT NULL,
     job_title VARCHAR(255) NOT NULL,
+    tagline VARCHAR(255),
     position_description VARCHAR(10200) NOT NULL,
     city VARCHAR(255),
     fulltime_parttime_contract VARCHAR(9) NOT NULL,
@@ -86,27 +90,4 @@ CREATE TABLE Applications(
     FOREIGN KEY (vacancy_id) REFERENCES Vacancies(id)
 );
 -- @BLOCK
-INSERT INTO Users (
-        first_name,
-        surname,
-        email,
-        hashed_password,
-        location,
-        country_code
-    )
-VALUES(
-        'Josh',
-        'Callarman',
-        'josh@joshcallarman.com',
-        'hello',
-        'Brighton',
-        'GB'
-    ),
-    (
-        'Kevin',
-        'Conolly',
-        'k.connolly@funny.com',
-        'hello',
-        'London',
-        'GB'
-    );
+DROP TABLE Companies;

@@ -1,4 +1,4 @@
-import db from '../../db';
+import db from '../../helpers/db';
 import currencyCodes from '../../currencycodes.json';
 
 function JobPost({ query }) {

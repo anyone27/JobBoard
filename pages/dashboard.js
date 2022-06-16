@@ -20,10 +20,10 @@ function DashboardPage() {
 	const router = useRouter();
 
 	function verifyLoggedIn() {
-		if (localStorage.getItem('loggedIn') === 'true') {
+		if (sessionStorage.getItem('loggedIn') === 'true') {
 			setLoggedIn(true);
-			setUserId(localStorage.getItem('userId'));
-			setUserName(localStorage.getItem('userName'));
+			setUserId(sessionStorage.getItem('userId'));
+			setUserName(sessionStorage.getItem('userName'));
 		} else {
 			setLoggedIn(false);
 			setUserId('');
@@ -38,8 +38,8 @@ function DashboardPage() {
 
 	useEffect(() => {
 		recentPostings();
-		fetchCompanies();
 		recentApplication();
+		fetchUserCompanies();
 	}, [userId]);
 
 	async function recentApplication() {
@@ -64,30 +64,16 @@ function DashboardPage() {
 		}
 	};
 
-	async function fetchCompanies() {
+	const fetchUserCompanies = async () => {
 		verifyLoggedIn();
 
-		let linkedCompanies = [];
-		let companyArray = [];
-
-		const result = await fetch(`/api/companies/${userId}`);
-		let data = await result.json();
-
-		for (let [key, value] of Object.entries(data)) {
-			linkedCompanies.push(data[key]);
+		setPostArray([]);
+		if (userId != '') {
+			const result = await fetch(`/api/companies/${userId}`);
+			let companyData = await result.json();
+			setUserCompanies(companyData);
 		}
-		// populate company selection drop down from user associated companies
-		if (data) {
-			companyArray = linkedCompanies.map(function (element) {
-				return (
-					<option key={element.company_id} value={element.company_id}>
-						{element.name}
-					</option>
-				);
-			});
-		}
-		setUserCompanies(companyArray);
-	}
+	};
 
 	function postJobForm() {
 		if (displayJobPosting) {
@@ -128,9 +114,7 @@ function DashboardPage() {
 			<h1>{userName}&apos;s Dashboard</h1>
 			<button onClick={postJobForm}>Post Vacancy</button>
 			<button onClick={createCompanyForm}>Register Company</button>
-			{displayJobPosting && (
-				<PostVacancy companyArray={userCompanies} userId={userId} />
-			)}
+			{displayJobPosting && <PostVacancy companyData={userCompanies} />}
 			{displayCreateCompany && <CreateCompany userId={userId} />}
 
 			{applicationArray.length > 0 && (

@@ -17,6 +17,8 @@ function CreateCompany({ userId }) {
 			method: 'POST',
 		});
 		if (res.ok) {
+			alert('Company Created');
+			console.log('successfully created company');
 			Router.reload();
 		}
 	};

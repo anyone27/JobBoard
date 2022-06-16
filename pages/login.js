@@ -1,6 +1,6 @@
 import Router from 'next/router';
 
-function Login() {
+function loginPage() {
 	const loginUser = async (event) => {
 		event.preventDefault();
 
@@ -9,7 +9,6 @@ function Login() {
 		const response = await fetch('./api/loginuser', {
 			method: 'POST',
 			body: JSON.stringify({
-				// TODO hash password
 				email: event.target.email.value,
 				password: password,
 			}),
@@ -27,9 +26,9 @@ function Login() {
 				alert('Incorrect Password');
 			} else if (json[0] === true) {
 				console.log('logged in successfully ');
-				localStorage.setItem('loggedIn', 'true');
-				localStorage.setItem('userId', json[1].id);
-				localStorage.setItem('userName', json[1].name);
+				sessionStorage.setItem('loggedIn', 'true');
+				sessionStorage.setItem('userId', json[1].id);
+				sessionStorage.setItem('userName', json[1].name);
 				Router.push('/');
 			}
 		} else {
@@ -58,4 +57,4 @@ function Login() {
 	);
 }
 
-export default Login;
+export default loginPage;

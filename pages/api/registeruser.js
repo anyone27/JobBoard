@@ -1,11 +1,17 @@
-import db from '../../db';
+import db from '../../helpers/db';
 
 export default async function registerUser(req, res) {
+	const bcrypt = require('bcryptjs');
+	let hash = bcrypt.hashSync(req.body.password, 14);
+
+	const auth_token = 'registerToken';
+
 	const insert = [
 		req.body.first_name,
 		req.body.surname,
 		req.body.email,
-		req.body.password,
+		hash,
+		auth_token,
 	];
 
 	if (req.method === 'POST') {
@@ -19,7 +25,7 @@ export default async function registerUser(req, res) {
 		} else {
 			const result = await db({
 				query:
-					'INSERT INTO Users(first_name, surname, email, hashed_password) VALUES(?)',
+					'INSERT INTO Users(first_name, surname, email, hashed_password, auth_token) VALUES(?)',
 				values: [insert],
 			});
 			const response = await db({
@@ -28,19 +34,23 @@ export default async function registerUser(req, res) {
 				values: req.body.email,
 			});
 
-			// console.log('response', response[0]);
-
 			if (!response[0]) {
 				console.log('Email not recognised');
 				res.send([false, 1]);
 			} else {
-				if (response[0].hashed_password === req.body.password) {
+				if (response[0].hashed_password === hash) {
 					console.log('logged in successfully');
 					let userInfo = {
 						id: response[0].id,
 						name: response[0].first_name,
 					};
-					// console.log(userInfo);
+					res.setHeader(
+						'Set-Cookie',
+						`session=${auth_token}`,
+						'HttpOnly',
+						'Secure'
+					);
+
 					res.send([true, userInfo]);
 				}
 			}

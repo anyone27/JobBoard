@@ -1,34 +1,46 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Jobs Board
 
-## Getting Started
+### This is a work in progress and currently not a live site. Once the core features are implemented I will be hosting this and making it live.
 
-First, run the development server:
+The idea for this web app is to create a jobs board that puts the applicant first.
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+It will be compulsory for the employer to provide a starting salary or salary range on every job post and the search functionality should only allow for relevent results and accurate filtering to avoid wasting the employer and applicants time during their search.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+The current/intended features of this site include:
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+- [x] Register user
+- [x] Login/Logout
+- [/] User Authentication with cookies and authentication tokens (WIP)
+- [x] Create Company
+- [x] Post Vacancy
+- [/] Apply for Vacancy (WIP)
+- [ ] Jobs Searching (TODO)
+- [ ] Job filtering (TODO)
+- [/] User Profile (WIP)
+- [/] User CV upload/fetch (WIP)
+- [x] SQL Database to store and query all relevant data and relationships
+- [/] Dashboard (WIP)
+  - [x] Display all jobs posted by a user
+  - [x] Applied to by a user
+  - [] All applications/Applicants for a posted role (TODO)
+  - [ ] All companies associated with a user (TODO)
+  - [ ] Status of all job applications (TODO)
+- [ ] Communication relating to job applications (TODO)
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+![Homepage](/images/homepage.jpg)
+Homepage
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+![Login](/images/login.jpg)
+Login
 
-## Learn More
+![Dashboard](/images/dashboard.jpg)
+Dashboard
 
-To learn more about Next.js, take a look at the following resources:
+![Create Company](/images/createcompany.jpg)
+Create Company
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+![Post Vacancy](/images/postvacancy.jpg)
+Post Vacancy
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+![Jobs list and Search](/images/jobsandsearch.jpg)
+Jobs List and Search

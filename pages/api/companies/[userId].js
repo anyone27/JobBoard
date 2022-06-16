@@ -1,4 +1,4 @@
-import db from '../../../db';
+import db from '../../../helpers/db';
 
 export default async function Companies(req, res) {
 	if (req.method === 'GET') {
@@ -7,7 +7,6 @@ export default async function Companies(req, res) {
 				'SELECT company_id, name FROM Companies INNER JOIN Employees ON Companies.id = Employees.company_id WHERE Employees.user_id = ?',
 			values: req.query.userId,
 		});
-
 		res.send(data);
 	}
 }

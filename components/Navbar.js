@@ -9,22 +9,33 @@ function Navbar() {
 	const router = useRouter();
 
 	function verifyLoggedIn() {
-		let verifyStatus = localStorage.getItem('loggedIn');
+		let verifyStatus = sessionStorage.getItem('loggedIn');
 		if (verifyStatus === 'true') {
 			setLoggedIn(true);
 		}
 
-		setUserId(localStorage.getItem('userId'));
+		setUserId(sessionStorage.getItem('userId'));
 
-		setUserName(localStorage.getItem('userName'));
+		setUserName(sessionStorage.getItem('userName'));
 	}
 
 	useEffect(() => {
 		verifyLoggedIn();
 	});
 
-	function signOut() {
-		localStorage.clear();
+	async function signOut() {
+		const logOut = await fetch('./api/logout', {
+			method: 'POST',
+			body: JSON.stringify({
+				user_id: userId,
+			}),
+			headers: {
+				'Content-Type': 'application/json',
+			},
+		});
+		sessionStorage.removeItem('loggedIn');
+		sessionStorage.removeItem('userId');
+		sessionStorage.removeItem('userName');
 		setLoggedIn(false);
 		setUserId('');
 		setUserName('');
