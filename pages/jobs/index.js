@@ -1,4 +1,4 @@
-import db from '../../db';
+import db from '../../helpers/db';
 import Vacancies from '../../components/Vacancies';
 
 function JobBoard(query) {

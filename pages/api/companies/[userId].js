@@ -1,4 +1,4 @@
-import db from '../../../db';
+import db from '../../../helpers/db';
 
 export default async function Companies(req, res) {
 	if (req.method === 'GET') {

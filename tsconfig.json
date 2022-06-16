@@ -23,7 +23,7 @@
 		"components/Icons.js",
 		"components/Layout.js",
 		"components/Loading.js",
-		"db.js",
+		"helpers/db.js",
 		"components/Login.js",
 		"components/Navbar.js",
 		"components/PostVacancy.js",
