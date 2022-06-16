@@ -45,7 +45,7 @@ function Navbar() {
 	return (
 		<nav>
 			<section className="heading-left">
-				<Link href="/">
+				<Link href="/jobs">
 					<a className="logo">JobListings</a>
 				</Link>
 				{loggedIn && (

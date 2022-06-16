@@ -10,16 +10,16 @@ The current/intended features of this site include:
 
 - [x] Register user
 - [x] Login/Logout
-- [/] User Authentication with cookies and authentication tokens (WIP)
+- [ ] User Authentication with cookies and authentication tokens (WIP)
 - [x] Create Company
 - [x] Post Vacancy
-- [/] Apply for Vacancy (WIP)
+- [ ] Apply for Vacancy (WIP)
 - [ ] Jobs Searching (TODO)
 - [ ] Job filtering (TODO)
-- [/] User Profile (WIP)
-- [/] User CV upload/fetch (WIP)
+- [ ] User Profile (WIP)
+- [ ] User CV upload/fetch (WIP)
 - [x] SQL Database to store and query all relevant data and relationships
-- [/] Dashboard (WIP)
+- [ ] Dashboard (WIP)
   - [x] Display all jobs posted by a user
   - [x] Applied to by a user
   - [] All applications/Applicants for a posted role (TODO)
