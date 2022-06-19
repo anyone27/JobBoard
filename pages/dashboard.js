@@ -126,7 +126,7 @@ function DashboardPage() {
 						Jobs Applied to
 						<Icons direction={displayApplications} />
 					</h2>
-					{/* {displayApplications && applicationArray} */}
+
 					{displayApplications && <Vacancies vacancies={applicationArray} />}
 				</>
 			)}
