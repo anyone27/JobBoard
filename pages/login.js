@@ -1,45 +1,25 @@
-import Router from 'next/router';
+import { signIn } from 'next-auth/react';
 
 function loginPage() {
-	const loginUser = async (event) => {
+	const handleLogin = async (event) => {
 		event.preventDefault();
 
+		const email = event.target.email.value;
 		const password = event.target.password.value;
 
-		const response = await fetch('./api/loginuser', {
-			method: 'POST',
-			body: JSON.stringify({
-				email: event.target.email.value,
-				password: password,
-			}),
-			headers: {
-				'Content-Type': 'application/json',
-			},
+		// console.log('email', event.target.email.value);
+		// console.log('password', event.target.password.value);
+		signIn('credentials', {
+			email,
+			password,
+			callbackUrl: `http://localhost:3000/dashboard`,
 		});
-		if (response.ok) {
-			let json = await response.json();
-			if (json[0] === false && json[1] === 1) {
-				console.log('Email not recognised');
-				alert('Email not recognised');
-			} else if (json[0] === false && json[1] === 2) {
-				console.log('Incorrect Password');
-				alert('Incorrect Password');
-			} else if (json[0] === true) {
-				console.log('logged in successfully ');
-				sessionStorage.setItem('loggedIn', 'true');
-				sessionStorage.setItem('userId', json[1].id);
-				sessionStorage.setItem('userName', json[1].name);
-				Router.push('/');
-			}
-		} else {
-			alert('HTTP-Error: ' + response.status);
-		}
 	};
 
 	return (
 		<section className="main-container">
 			<h1>Login</h1>
-			<form onSubmit={loginUser}>
+			<form onSubmit={handleLogin}>
 				<div className="form-item required-item">
 					<input id="email" type="email" placeholder="Email" required />
 				</div>

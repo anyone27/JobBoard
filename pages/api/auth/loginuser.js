@@ -1,4 +1,4 @@
-import db from '../../helpers/db';
+import db from '../../../helpers/db';
 
 export default async function registerUser(req, res) {
 	const bcrypt = require('bcryptjs');
@@ -24,29 +24,29 @@ export default async function registerUser(req, res) {
 					name: validate[0].first_name,
 				};
 
-				console.log('userId', validate[0].id);
-				const date = new Date();
-				console.log('Full date', date);
-				console.log('expires', date + 1);
-				res.setHeader(
-					'Set-Cookie',
-					`session=${auth_token}`,
-					'HttpOnly',
-					'Secure',
-					'SameSite=Strict',
-					'Set-Cookie',
-					`userId=${validate[0].id}`,
-					'Secure'
-				);
-				res.setHeader('Set-Cookie', `userId=${validate[0].id}`, 'Secure');
-				res.setHeader(
-					'Set-Cookie',
-					`userName=${validate[0].first_name}`,
-					'Secure',
-					'SameSite=Strict'
-				);
+				// console.log('userId', validate[0].id);
+				// const date = new Date();
+				// console.log('Full date', date);
+				// console.log('expires', date + 1);
+				// res.setHeader(
+				// 	'Set-Cookie',
+				// 	`session=${auth_token}`,
+				// 	'HttpOnly',
+				// 	'Secure',
+				// 	'SameSite=Strict',
+				// 	'Set-Cookie',
+				// 	`userId=${validate[0].id}`,
+				// 	'Secure'
+				// );
+				// res.setHeader('Set-Cookie', `userId=${validate[0].id}`, 'Secure');
+				// res.setHeader(
+				// 	'Set-Cookie',
+				// 	`userName=${validate[0].first_name}`,
+				// 	'Secure',
+				// 	'SameSite=Strict'
+				// );
 
-				res.send([true, userInfo]);
+				res.send(userInfo);
 				console.log('logged in successfully');
 			} else {
 				console.log('incorrect password');

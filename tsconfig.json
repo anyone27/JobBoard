@@ -35,7 +35,7 @@
 		"pages/api/companies/index.js",
 		"pages/api/vacancies/[userId].js",
 		"pages/api/vacancies/index.js",
-		"pages/api/loginuser.js",
+		"pages/api/auth/loginuser.js",
 		"pages/api/registeruser.js",
 		"pages/jobs/[jobs_id].js",
 		"pages/register.js",

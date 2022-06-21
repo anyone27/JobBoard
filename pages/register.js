@@ -5,7 +5,7 @@ function Register() {
 		event.preventDefault();
 		const password = event.target.password.value;
 
-		const res = await fetch('./api/registeruser', {
+		const res = await fetch('./api/auth/registeruser', {
 			method: 'POST',
 			body: JSON.stringify({
 				first_name: event.target.first_name.value,

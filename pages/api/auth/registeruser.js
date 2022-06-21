@@ -1,19 +1,6 @@
-import db from '../../helpers/db';
+import db from '../../../helpers/db';
 
 export default async function registerUser(req, res) {
-	const bcrypt = require('bcryptjs');
-	let hash = bcrypt.hashSync(req.body.password, 14);
-
-	const auth_token = 'registerToken';
-
-	const insert = [
-		req.body.first_name,
-		req.body.surname,
-		req.body.email,
-		hash,
-		auth_token,
-	];
-
 	if (req.method === 'POST') {
 		let validate = await db({
 			query: 'SELECT email from Users WHERE email = ?',
@@ -23,6 +10,18 @@ export default async function registerUser(req, res) {
 		if (validate.length > 0) {
 			res.send('Email already in use');
 		} else {
+			const bcrypt = require('bcryptjs');
+			let hash = bcrypt.hashSync(req.body.password, 14);
+
+			const auth_token = 'registerToken';
+
+			const insert = [
+				req.body.first_name,
+				req.body.surname,
+				req.body.email,
+				hash,
+				auth_token,
+			];
 			const result = await db({
 				query:
 					'INSERT INTO Users(first_name, surname, email, hashed_password, auth_token) VALUES(?)',

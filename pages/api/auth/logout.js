@@ -1,4 +1,4 @@
-import db from '../../helpers/db';
+import db from '../../../helpers/db';
 
 export default async function logout(req, res) {
 	if (req.method === 'POST') {
