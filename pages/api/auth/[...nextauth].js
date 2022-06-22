@@ -32,11 +32,39 @@ export default NextAuth({
 
 				// If no error and we have user data, return it
 				if (res.ok && user) {
-					return user;
+					return {
+						name: user.name,
+						id: user.id,
+					};
 				}
 				// Return null if user data could not be retrieved
 				return null;
 			},
 		}),
 	],
+	callbacks: {
+		async jwt({ token, account, user }) {
+			// Persist the OAuth access_token to the token right after signin
+			if (account) {
+				token.accessToken = account.access_token;
+			}
+			if (user) {
+				token.id = user.id;
+			}
+			return token;
+		},
+		async session({ session, token }) {
+			// Send properties to the client, like an access_token from a provider.
+			session.accessToken = token.accessToken;
+			if (token) {
+				session.id = token.id;
+			}
+			return session;
+		},
+	},
+	secret: process.env.NEXTAUTH_SECRET,
+	jwt: {
+		secret: process.env.NEXTAUTH_SECRET,
+		encryption: true,
+	},
 });

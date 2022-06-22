@@ -7,8 +7,6 @@ function loginPage() {
 		const email = event.target.email.value;
 		const password = event.target.password.value;
 
-		// console.log('email', event.target.email.value);
-		// console.log('password', event.target.password.value);
 		signIn('credentials', {
 			email,
 			password,

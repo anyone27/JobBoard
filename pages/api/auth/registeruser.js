@@ -43,12 +43,12 @@ export default async function registerUser(req, res) {
 						id: response[0].id,
 						name: response[0].first_name,
 					};
-					res.setHeader(
-						'Set-Cookie',
-						`session=${auth_token}`,
-						'HttpOnly',
-						'Secure'
-					);
+					// res.setHeader(
+					// 	'Set-Cookie',
+					// 	`session=${auth_token}`,
+					// 	'HttpOnly',
+					// 	'Secure'
+					// );
 
 					res.send([true, userInfo]);
 				}

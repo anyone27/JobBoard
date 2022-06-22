@@ -1,8 +1,7 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useSession, getSession } from 'next-auth/react';
 import CreateCompany from '../components/CreateCompany';
 import PostVacancy from '../components/PostVacancy';
-import { useRouter } from 'next/router';
 import Vacancies from '../components/Vacancies';
 import Icons from '../components/Icons';
 
@@ -18,80 +17,82 @@ function DashboardPage() {
 	const [displayVacancies, setDisplayVacancies] = useState(true);
 	const [displayApplications, setDisplayApplications] = useState(true);
 
-	const router = useRouter();
-
 	const { data: session, status } = useSession();
 
+	useEffect(() => {
+		setUserName(session.user.name);
+		setUserId(session.id);
+	}, [session.id]);
+
+	useEffect(() => {
+		recentPostings();
+		recentApplication();
+		fetchUserCompanies();
+	}, [userId]);
+
+	async function recentApplication() {
+		setApplicationArray([]);
+
+		if (session.user.id) {
+			const res = await fetch(`/api/applications/${session.user.id}`);
+			let data = await res.json();
+			setApplicationArray(data);
+		}
+	}
+
+	async function recentPostings() {
+		setPostArray([]);
+		if (userId != '') {
+			const res = await fetch(`/api/vacancies/${userId}`);
+			let data = await res.json();
+			setPostArray(data);
+		}
+	}
+
+	async function fetchUserCompanies() {
+		setPostArray([]);
+		if (userId != '') {
+			const result = await fetch(`/api/companies/${userId}`);
+			let companyData = await result.json();
+			setUserCompanies(companyData);
+		}
+	}
+
+	function postJobForm() {
+		if (displayJobPosting) {
+			setDisplayJobPosting(false);
+		} else {
+			setDisplayCreateCompany(false);
+			setDisplayJobPosting(true);
+		}
+	}
+
+	function createCompanyForm() {
+		if (displayCreateCompany) {
+			setDisplayCreateCompany(false);
+		} else {
+			setDisplayJobPosting(false);
+			setDisplayCreateCompany(true);
+		}
+	}
+
+	const handleDropDown = (reference) => {
+		if (reference === 'posts') {
+			if (displayVacancies) {
+				setDisplayVacancies(false);
+			} else {
+				setDisplayVacancies(true);
+			}
+		} else if (reference === 'applications') {
+			if (displayApplications) {
+				setDisplayApplications(false);
+			} else {
+				setDisplayApplications(true);
+			}
+		}
+	};
+
 	if (status === 'authenticated') {
-		useEffect(() => {
-			setUserName(session.user.name);
-			recentPostings();
-			recentApplication();
-			fetchUserCompanies();
-		}, [session.user.id]);
-
-		async function recentApplication() {
-			setApplicationArray([]);
-
-			if (session.user.id) {
-				const res = await fetch(`/api/applications/${session.user.id}`);
-				let data = await res.json();
-				setApplicationArray(data);
-			}
-		}
-
-		const recentPostings = async () => {
-			setPostArray([]);
-			if (userId != '') {
-				const res = await fetch(`/api/vacancies/${userId}`);
-				let data = await res.json();
-				setPostArray(data);
-			}
-		};
-
-		const fetchUserCompanies = async () => {
-			setPostArray([]);
-			if (userId != '') {
-				const result = await fetch(`/api/companies/${userId}`);
-				let companyData = await result.json();
-				setUserCompanies(companyData);
-			}
-		};
-
-		function postJobForm() {
-			if (displayJobPosting) {
-				setDisplayJobPosting(false);
-			} else {
-				setDisplayCreateCompany(false);
-				setDisplayJobPosting(true);
-			}
-		}
-
-		function createCompanyForm() {
-			if (displayCreateCompany) {
-				setDisplayCreateCompany(false);
-			} else {
-				setDisplayJobPosting(false);
-				setDisplayCreateCompany(true);
-			}
-		}
-
-		const handleDropDown = (reference) => {
-			if (reference === 'posts') {
-				if (displayVacancies) {
-					setDisplayVacancies(false);
-				} else {
-					setDisplayVacancies(true);
-				}
-			} else if (reference === 'applications') {
-				if (displayApplications) {
-					setDisplayApplications(false);
-				} else {
-					setDisplayApplications(true);
-				}
-			}
-		};
-
 		return (
 			<section className="main-container">
 				<h1>{userName}&apos;s Dashboard</h1>
@@ -131,9 +132,18 @@ function DashboardPage() {
 }
 
 export async function getServerSideProps(ctx) {
+	const session = await getSession(ctx);
+	if (!session) {
+		return {
+			redirect: {
+				permanent: false,
+				destination: '/',
+			},
+		};
+	}
 	return {
 		props: {
-			session: await getSession(ctx),
+			session: session,
 		},
 	};
 }

@@ -24,28 +24,6 @@ export default async function registerUser(req, res) {
 					name: validate[0].first_name,
 				};
 
-				// console.log('userId', validate[0].id);
-				// const date = new Date();
-				// console.log('Full date', date);
-				// console.log('expires', date + 1);
-				// res.setHeader(
-				// 	'Set-Cookie',
-				// 	`session=${auth_token}`,
-				// 	'HttpOnly',
-				// 	'Secure',
-				// 	'SameSite=Strict',
-				// 	'Set-Cookie',
-				// 	`userId=${validate[0].id}`,
-				// 	'Secure'
-				// );
-				// res.setHeader('Set-Cookie', `userId=${validate[0].id}`, 'Secure');
-				// res.setHeader(
-				// 	'Set-Cookie',
-				// 	`userName=${validate[0].first_name}`,
-				// 	'Secure',
-				// 	'SameSite=Strict'
-				// );
-
 				res.send(userInfo);
 				console.log('logged in successfully');
 			} else {
