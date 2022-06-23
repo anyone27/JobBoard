@@ -1,4 +1,3 @@
--- @BLOCK
 CREATE TABLE Users(
     id INT PRIMARY KEY AUTO_INCREMENT NOT NULL UNIQUE,
     first_name VARCHAR(255) NOT NULL,
@@ -8,12 +7,9 @@ CREATE TABLE Users(
     location VARCHAR(255),
     country_code VARCHAR(2),
     cv_location VARCHAR(255),
-    auth_token VARCHAR(255),
     flagged BOOLEAN
 );
--- @BLOCK
 CREATE INDEX email_index ON Users(email);
--- @BLOCK
 CREATE TABLE Companies(
     id INT PRIMARY KEY AUTO_INCREMENT NOT NULL UNIQUE,
     name VARCHAR(255) UNIQUE NOT NULL,
@@ -22,9 +18,7 @@ CREATE TABLE Companies(
     logo VARCHAR(255),
     flagged BOOLEAN
 );
---  @BLOCK
 CREATE INDEX company_name_index ON Companies(name);
--- @BLOCK
 CREATE TABLE Employees(
     id INT PRIMARY KEY AUTO_INCREMENT NOT NULL UNIQUE,
     user_id INT NOT NULL,
@@ -36,7 +30,6 @@ CREATE TABLE Employees(
     FOREIGN KEY (user_id) REFERENCES Users(id),
     FOREIGN KEY (company_id) REFERENCES Companies(id)
 );
--- @BLOCK
 CREATE TABLE Vacancies(
     id INT PRIMARY KEY AUTO_INCREMENT UNIQUE NOT NULL,
     user_id INT NOT NULL,
@@ -57,12 +50,10 @@ CREATE TABLE Vacancies(
     FOREIGN KEY (user_id) REFERENCES Users(id),
     FOREIGN KEY (company_id) REFERENCES Companies(id)
 );
--- @BLOCK
 CREATE TABLE Skills (
     id INT PRIMARY KEY AUTO_INCREMENT NOT NULL UNIQUE,
     skill VARCHAR(255) NOT NULL UNIQUE
 );
--- @BLOCK
 CREATE TABLE Vacancy_skills(
     id INT PRIMARY KEY AUTO_INCREMENT NOT NULL UNIQUE,
     post_id INT NOT NULL,
@@ -71,7 +62,6 @@ CREATE TABLE Vacancy_skills(
     FOREIGN KEY (post_id) REFERENCES Vacancies(id),
     FOREIGN KEY (skill_id) REFERENCES Skills(id)
 );
--- @BLOCK
 CREATE TABLE User_skills(
     id INT PRIMARY KEY AUTO_INCREMENT NOT NULL UNIQUE,
     user_id INT NOT NULL,
@@ -80,7 +70,6 @@ CREATE TABLE User_skills(
     FOREIGN KEY (user_id) REFERENCES Users(id),
     FOREIGN KEY (skill_id) REFERENCES Skills(id)
 );
--- @BLOCK
 CREATE TABLE Applications(
     id INT PRIMARY KEY AUTO_INCREMENT NOT NULL UNIQUE,
     user_id INT NOT NULL,
@@ -89,5 +78,3 @@ CREATE TABLE Applications(
     FOREIGN KEY (user_id) REFERENCES Users(id),
     FOREIGN KEY (vacancy_id) REFERENCES Vacancies(id)
 );
--- @BLOCK
-DROP TABLE Companies;

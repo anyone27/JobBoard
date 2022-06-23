@@ -11,24 +11,19 @@ export default async function registerUser(req, res) {
 		});
 		if (!validate[0]) {
 			console.log('Email not recognised');
-			res.send([false, 1]);
+			res.status(500).json({ error: 'Email not recognised' });
 		} else {
 			if (bcrypt.compareSync(req.body.password, validate[0].hashed_password)) {
-				const auth_token = 'loginToken';
-				const authorise = await db({
-					query: `UPDATE Users SET auth_token=(?) WHERE email = (?)`,
-					values: [auth_token, req.body.email],
-				});
 				let userInfo = {
 					id: validate[0].id,
 					name: validate[0].first_name,
 				};
 
-				res.send(userInfo);
 				console.log('logged in successfully');
+				res.send(userInfo);
 			} else {
 				console.log('incorrect password');
-				res.send([false, 2]);
+				res.status(500).json({ error: 'Incorrect Password' });
 			}
 		}
 	} else {

@@ -1,16 +1,18 @@
 import Router from 'next/router';
+import { signIn } from 'next-auth/react';
 
 function Register() {
 	const registerUser = async (event) => {
 		event.preventDefault();
 		const password = event.target.password.value;
+		const email = event.target.email.value;
 
 		const res = await fetch('./api/auth/registeruser', {
 			method: 'POST',
 			body: JSON.stringify({
 				first_name: event.target.first_name.value,
 				surname: event.target.surname.value,
-				email: event.target.email.value,
+				email: email,
 				password: password,
 			}),
 			headers: {
@@ -26,10 +28,11 @@ function Register() {
 				console.log('Incorrect Password');
 				alert('Incorrect Password');
 			} else if (json[0] === true) {
-				// sessionStorage.setItem('loggedIn', 'true');
-				// sessionStorage.setItem('userId', json[1].id);
-				// sessionStorage.setItem('userName', json[1].name);
-				Router.push('/dashboard');
+				signIn('credentials', {
+					email,
+					password,
+					callbackUrl: `${window.location.origin}/dashboard`,
+				});
 			}
 		} else {
 			alert('HTTP-Error: ' + res.status);

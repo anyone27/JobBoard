@@ -8,9 +8,10 @@ function loginPage() {
 		const password = event.target.password.value;
 
 		signIn('credentials', {
+			redirect: true,
 			email,
 			password,
-			callbackUrl: `http://localhost:3000/dashboard`,
+			callbackUrl: `${window.location.origin}/dashboard`,
 		});
 	};
 

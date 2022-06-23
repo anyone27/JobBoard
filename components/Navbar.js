@@ -4,46 +4,9 @@ import { useRouter } from 'next/router';
 import { useSession, getSession, signOut } from 'next-auth/react';
 
 function Navbar() {
-	// const [loggedIn, setLoggedIn] = useState(false);
-	// const [userName, setUserName] = useState('');
-	// const [userId, setUserId] = useState('');
 	const { data: session, status } = useSession();
 
 	const router = useRouter();
-
-	// function verifyLoggedIn() {
-	// 	let verifyStatus = sessionStorage.getItem('loggedIn');
-	// 	if (verifyStatus === 'true') {
-	// 		setLoggedIn(true);
-	// 	}
-
-	// 	setUserId(sessionStorage.getItem('userId'));
-
-	// 	setUserName(sessionStorage.getItem('userName'));
-	// }
-
-	// useEffect(() => {
-	// 	verifyLoggedIn();
-	// });
-
-	// async function signOut() {
-	// 	const logOut = await fetch('./api/auth/logout', {
-	// 		method: 'POST',
-	// 		body: JSON.stringify({
-	// 			user_id: userId,
-	// 		}),
-	// 		headers: {
-	// 			'Content-Type': 'application/json',
-	// 		},
-	// 	});
-	// 	sessionStorage.removeItem('loggedIn');
-	// 	sessionStorage.removeItem('userId');
-	// 	sessionStorage.removeItem('userName');
-	// 	setLoggedIn(false);
-	// 	setUserId('');
-	// 	setUserName('');
-	// 	router.push('/');
-	// }
 
 	function handleSignOut() {
 		signOut({ callbackUrl: 'http://localhost:3000' });
