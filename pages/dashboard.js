@@ -6,7 +6,6 @@ import Vacancies from '../components/Vacancies';
 import Icons from '../components/Icons';
 
 function DashboardPage() {
-	const [loggedIn, setLoggedIn] = useState(false);
 	const [userName, setUserName] = useState('');
 	const [userId, setUserId] = useState('');
 	const [displayJobPosting, setDisplayJobPosting] = useState(false);
@@ -45,6 +44,7 @@ function DashboardPage() {
 		if (userId != '') {
 			const res = await fetch(`/api/vacancies/${userId}`);
 			let data = await res.json();
+			console.log('posts', data);
 			setPostArray(data);
 		}
 	}
@@ -54,6 +54,7 @@ function DashboardPage() {
 		if (userId != '') {
 			const result = await fetch(`/api/companies/${userId}`);
 			let companyData = await result.json();
+			console.log('companies', companyData);
 			setUserCompanies(companyData);
 		}
 	}
@@ -98,7 +99,9 @@ function DashboardPage() {
 				<h1>{userName}&apos;s Dashboard</h1>
 				<button onClick={postJobForm}>Post Vacancy</button>
 				<button onClick={createCompanyForm}>Register Company</button>
-				{displayJobPosting && <PostVacancy companyData={userCompanies} />}
+				{displayJobPosting && (
+					<PostVacancy companyData={userCompanies} userId={userId} />
+				)}
 				{displayCreateCompany && <CreateCompany userId={userId} />}
 
 				{applicationArray.length > 0 && (

@@ -1,21 +1,15 @@
 import { useState, useEffect } from 'react';
+import { useSession, getSession } from 'next-auth/react';
 
 function Profile() {
-	const [loggedIn, setLoggedIn] = useState(false);
 	const [userName, setUserName] = useState('');
 	const [userId, setUserId] = useState('');
-
-	function verifyLoggedIn() {
-		if (localStorage.getItem('loggedIn') === 'true') {
-			setLoggedIn(true);
-		}
-		setUserId(localStorage.getItem('userId'));
-		setUserName(localStorage.getItem('userName'));
-	}
+	const { data: session, status } = useSession();
 
 	useEffect(() => {
-		verifyLoggedIn();
-	});
+		setUserName(session.user.name);
+		setUserId(session.id);
+	}, [status]);
 
 	return (
 		<section className="main-container">
@@ -23,6 +17,23 @@ function Profile() {
 			<p>Welcome {userName}</p>
 		</section>
 	);
+}
+
+export async function getServerSideProps(ctx) {
+	const session = await getSession(ctx);
+	if (!session) {
+		return {
+			redirect: {
+				permanent: false,
+				destination: '/login',
+			},
+		};
+	}
+	return {
+		props: {
+			session: session,
+		},
+	};
 }
 
 export default Profile;
