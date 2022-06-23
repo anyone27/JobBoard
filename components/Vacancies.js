@@ -26,7 +26,7 @@ function Vacancies({ vacancies }) {
 				<div className="vacancy-card">
 					<h1 className="jobtitle">{vacancies[entry].job_title}</h1>
 					<p className="company">{vacancies[entry].name}</p>
-					<p className="jobdescription">
+					<p className="jobdescription short-description">
 						{vacancies[entry].position_description}
 					</p>
 					<p className="paybands">{pay}</p>

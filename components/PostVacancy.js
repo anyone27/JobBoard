@@ -3,14 +3,12 @@ import currencycodes from '../currencycodes.json';
 import { useState, useEffect } from 'react';
 import Router from 'next/router';
 
-function PostJobs({ companyData }) {
+function PostJobs({ companyData, userId }) {
 	const [isPayRange, setIsPayRange] = useState(false);
 
 	let countryArray = [];
 	let currencyArray = [];
 	let companyArray = [];
-
-	const userId = sessionStorage.getItem('userId');
 
 	for (const key in companyData) {
 		companyArray.push(
@@ -50,6 +48,7 @@ function PostJobs({ companyData }) {
 
 	const postJob = async (event) => {
 		event.preventDefault();
+		console.log('userId', userId);
 
 		// Validate that the lower pay and upper pay are correlated
 		if (
