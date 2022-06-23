@@ -15,6 +15,7 @@ function DashboardPage() {
 	const [applicationArray, setApplicationArray] = useState([]);
 	const [displayVacancies, setDisplayVacancies] = useState(true);
 	const [displayApplications, setDisplayApplications] = useState(true);
+	const limitDesc = 250;
 
 	const { data: session, status } = useSession();
 
@@ -44,7 +45,6 @@ function DashboardPage() {
 		if (userId != '') {
 			const res = await fetch(`/api/vacancies/${userId}`);
 			let data = await res.json();
-			console.log('posts', data);
 			setPostArray(data);
 		}
 	}
@@ -54,7 +54,6 @@ function DashboardPage() {
 		if (userId != '') {
 			const result = await fetch(`/api/companies/${userId}`);
 			let companyData = await result.json();
-			console.log('companies', companyData);
 			setUserCompanies(companyData);
 		}
 	}
@@ -114,7 +113,9 @@ function DashboardPage() {
 							<Icons direction={displayApplications} />
 						</h2>
 
-						{displayApplications && <Vacancies vacancies={applicationArray} />}
+						{displayApplications && (
+							<Vacancies vacancies={applicationArray} limitDesc={limitDesc} />
+						)}
 					</>
 				)}
 				{postArray.length > 0 && (
@@ -126,7 +127,9 @@ function DashboardPage() {
 							{userName}&apos;s Job Posts
 							<Icons direction={displayVacancies} />
 						</h2>
-						{displayVacancies && <Vacancies vacancies={postArray} />}
+						{displayVacancies && (
+							<Vacancies vacancies={postArray} limitDesc={limitDesc} />
+						)}
 					</>
 				)}
 			</section>

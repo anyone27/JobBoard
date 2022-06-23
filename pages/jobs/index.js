@@ -2,6 +2,8 @@ import db from '../../helpers/db';
 import Vacancies from '../../components/Vacancies';
 
 function JobBoard(query) {
+	const limitDesc = 250;
+
 	return (
 		<section className="main-container">
 			<h1>Jobs</h1>
@@ -12,7 +14,7 @@ function JobBoard(query) {
 				</div>
 			</form>
 			<div>
-				<Vacancies vacancies={query.query} />
+				<Vacancies vacancies={query.query} limitDesc={limitDesc} />
 			</div>
 		</section>
 	);

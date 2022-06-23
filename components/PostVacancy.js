@@ -48,7 +48,6 @@ function PostJobs({ companyData, userId }) {
 
 	const postJob = async (event) => {
 		event.preventDefault();
-		console.log('userId', userId);
 
 		// Validate that the lower pay and upper pay are correlated
 		if (

@@ -1,6 +1,6 @@
 import currencyCodes from '../currencycodes.json';
 
-function Vacancies({ vacancies }) {
+function Vacancies({ vacancies, limitDesc }) {
 	let vacancyArray = [];
 	let currencySymbol = '';
 	let pay = '';
@@ -20,15 +20,19 @@ function Vacancies({ vacancies }) {
 		} else {
 			pay = currencySymbol.concat(lower_pay);
 		}
+		let truncatedDescription = vacancies[entry].position_description;
+
+		if (limitDesc) {
+			truncatedDescription =
+				vacancies[entry].position_description.substring(0, limitDesc) + '...';
+		}
 
 		vacancyArray.push(
 			<a href={`./jobs/${vacancyId}`} key={vacancyId}>
 				<div className="vacancy-card">
 					<h1 className="jobtitle">{vacancies[entry].job_title}</h1>
 					<p className="company">{vacancies[entry].name}</p>
-					<p className="jobdescription short-description">
-						{vacancies[entry].position_description}
-					</p>
+					<p className="jobdescription">{truncatedDescription}</p>
 					<p className="paybands">{pay}</p>
 				</div>
 			</a>
