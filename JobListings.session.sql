@@ -1,5 +1,5 @@
 CREATE TABLE Users(
-    id INT PRIMARY KEY AUTO_INCREMENT NOT NULL UNIQUE,
+    id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
     first_name VARCHAR(255) NOT NULL,
     surname VARCHAR(255),
     email VARCHAR(255) UNIQUE NOT NULL,
@@ -11,7 +11,7 @@ CREATE TABLE Users(
 );
 CREATE INDEX email_index ON Users(email);
 CREATE TABLE Companies(
-    id INT PRIMARY KEY AUTO_INCREMENT NOT NULL UNIQUE,
+    id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
     name VARCHAR(255) UNIQUE NOT NULL,
     website VARCHAR(255),
     description VARCHAR(1020),
@@ -20,7 +20,7 @@ CREATE TABLE Companies(
 );
 CREATE INDEX company_name_index ON Companies(name);
 CREATE TABLE Employees(
-    id INT PRIMARY KEY AUTO_INCREMENT NOT NULL UNIQUE,
+    id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
     user_id INT NOT NULL,
     company_id INT NOT NULL,
     position VARCHAR(255) NOT NULL,
@@ -31,7 +31,7 @@ CREATE TABLE Employees(
     FOREIGN KEY (company_id) REFERENCES Companies(id)
 );
 CREATE TABLE Vacancies(
-    id INT PRIMARY KEY AUTO_INCREMENT UNIQUE NOT NULL,
+    id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
     user_id INT NOT NULL,
     company_id INT NOT NULL,
     job_title VARCHAR(255) NOT NULL,
@@ -51,11 +51,11 @@ CREATE TABLE Vacancies(
     FOREIGN KEY (company_id) REFERENCES Companies(id)
 );
 CREATE TABLE Skills (
-    id INT PRIMARY KEY AUTO_INCREMENT NOT NULL UNIQUE,
+    id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
     skill VARCHAR(255) NOT NULL UNIQUE
 );
 CREATE TABLE Vacancy_skills(
-    id INT PRIMARY KEY AUTO_INCREMENT NOT NULL UNIQUE,
+    id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
     post_id INT NOT NULL,
     skill_id INT NOT NULL,
     years_experience INT,
@@ -63,7 +63,7 @@ CREATE TABLE Vacancy_skills(
     FOREIGN KEY (skill_id) REFERENCES Skills(id)
 );
 CREATE TABLE User_skills(
-    id INT PRIMARY KEY AUTO_INCREMENT NOT NULL UNIQUE,
+    id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
     user_id INT NOT NULL,
     skill_id INT NOT NULL,
     years_experience INT NOT NULL,
@@ -71,7 +71,7 @@ CREATE TABLE User_skills(
     FOREIGN KEY (skill_id) REFERENCES Skills(id)
 );
 CREATE TABLE Applications(
-    id INT PRIMARY KEY AUTO_INCREMENT NOT NULL UNIQUE,
+    id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
     user_id INT NOT NULL,
     vacancy_id INT NOT NULL,
     date_applied TIMESTAMP,
