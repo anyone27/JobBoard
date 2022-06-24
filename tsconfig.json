@@ -44,7 +44,7 @@
 		"pages/index.js",
 		"pages/dashboard.js",
 		"pages/_app.js",
-		"pages/job/index.js,
+		"pages/job/index.js",
 		"components/CreateCompany.js"
 	],
 	"exclude": ["node_modules"]
