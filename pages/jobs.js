@@ -1,5 +1,5 @@
-import db from '../../helpers/db';
-import Vacancies from '../../components/Vacancies';
+import db from '../helpers/db';
+import Vacancies from '../components/Vacancies';
 
 function JobBoard(query) {
 	const limitDesc = 250;

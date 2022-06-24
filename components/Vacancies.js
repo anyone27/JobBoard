@@ -28,7 +28,7 @@ function Vacancies({ vacancies, limitDesc }) {
 		}
 
 		vacancyArray.push(
-			<a href={`./jobs/${vacancyId}`} key={vacancyId}>
+			<a href={`./job/${vacancyId}`} key={vacancyId}>
 				<div className="vacancy-card">
 					<h1 className="jobtitle">{vacancies[entry].job_title}</h1>
 					<p className="company">{vacancies[entry].name}</p>
