@@ -37,14 +37,14 @@
 		"pages/api/vacancies/index.js",
 		"pages/api/auth/loginuser.js",
 		"pages/api/registeruser.js",
-		"pages/jobs/[jobs_id].js",
+		"pages/job/[jobs_id].js",
 		"pages/register.js",
 		"pages/profile.js",
 		"pages/login.js",
 		"pages/index.js",
 		"pages/dashboard.js",
 		"pages/_app.js",
-		"pages/jobs/index.js",
+		"pages/job/index.js,
 		"components/CreateCompany.js"
 	],
 	"exclude": ["node_modules"]
