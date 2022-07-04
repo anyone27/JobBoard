@@ -6,6 +6,7 @@ function Profile() {
 	const [userId, setUserId] = useState('');
 	const { data: session, status } = useSession();
 
+	// on page load, and update of status variable, set the user name and id
 	useEffect(() => {
 		setUserName(session.user.name);
 		setUserId(session.id);
@@ -19,6 +20,7 @@ function Profile() {
 	);
 }
 
+// Intercept before page load and verify user is logged in and user id, if not logged in redirect to login page
 export async function getServerSideProps(ctx) {
 	const session = await getSession(ctx);
 	if (!session) {

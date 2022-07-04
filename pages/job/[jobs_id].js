@@ -1,11 +1,11 @@
 import db from '../../helpers/db';
-import currencyCodes from '../../currencycodes.json';
+import currencyCodes from '../../helpers/currencycodes.json';
 
 function JobPost({ query }) {
 	let currencySymbol = '';
 	let pay = '';
-	// console.log(userId);
 
+	// if user applies, submit relevent user id and job id to the server
 	const handleApply = async (job_id) => {
 		const userId = Number(localStorage.getItem('userId'));
 		const result = await fetch('../api/applications', {
@@ -20,12 +20,14 @@ function JobPost({ query }) {
 		});
 	};
 
+	// iterate through currency codes and if the code matches, load the symbol for the relevant currency
 	for (let currency in currencyCodes) {
 		if (currencyCodes[currency].code === query.currency_symbol) {
 			currencySymbol = currencyCodes[currency].symbol;
 		}
 	}
 
+	// populate upper and lower pay threshold from DB, if upper pay exists, render both, if only lower pay exists render on it's own
 	const lower_pay = query.lower_pay_threshold;
 	const upper_pay = query.upper_pay_threshold;
 
@@ -57,6 +59,7 @@ function JobPost({ query }) {
 
 export default JobPost;
 
+// query server before page load to render details on specific job posting
 export async function getServerSideProps(req, res) {
 	const id = req.params.jobs_id;
 	let query = await db({

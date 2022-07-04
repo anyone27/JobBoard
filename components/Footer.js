@@ -1,7 +1,9 @@
 function Footer() {
 	return (
 		<footer className="footer-container">
-			<h2>footer</h2>
+			<span className="footer-copywrite">
+				Copywrite &copy; {new Date().getFullYear()} Josh Callarman
+			</span>
 		</footer>
 	);
 }

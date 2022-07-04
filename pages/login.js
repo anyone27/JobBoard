@@ -7,6 +7,7 @@ function loginPage() {
 		const email = event.target.email.value;
 		const password = event.target.password.value;
 
+		// Next-Auth signIn function, submits users email and password and redirects to dashboard if successfully logged in
 		signIn('credentials', {
 			redirect: true,
 			email,

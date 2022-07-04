@@ -7,6 +7,7 @@ function Register() {
 		const password = event.target.password.value;
 		const email = event.target.email.value;
 
+		// fetch request to api
 		const res = await fetch('./api/auth/registeruser', {
 			method: 'POST',
 			body: JSON.stringify({
@@ -19,14 +20,18 @@ function Register() {
 				'Content-Type': 'application/json',
 			},
 		});
+
 		if (res.ok) {
 			let json = await res.json();
+			// if response false and error code 1, email not recognised
 			if (json[0] === false && json[1] === 1) {
 				console.log('Email not recognised');
 				alert('Email not recognised');
+				// if response false and error code 2, incorrect password
 			} else if (json[0] === false && json[1] === 2) {
 				console.log('Incorrect Password');
 				alert('Incorrect Password');
+				// if response true then registration successful, proceed to signIn and route to user dashboard
 			} else if (json[0] === true) {
 				signIn('credentials', {
 					email,

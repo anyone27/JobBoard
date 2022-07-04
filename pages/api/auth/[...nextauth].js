@@ -23,6 +23,7 @@ export default NextAuth({
 				// You can also use the `req` object to obtain additional parameters
 				// (i.e., the request IP address)
 
+				// submit user credentials to login api function
 				const res = await fetch('http://localhost:3000/api/auth/loginuser', {
 					method: 'POST',
 					body: JSON.stringify(credentials),
@@ -43,6 +44,7 @@ export default NextAuth({
 		}),
 	],
 	callbacks: {
+		// configure JSON Web Token to be returned to the browser on successful registration/login
 		async jwt({ token, account, user }) {
 			// Persist the OAuth access_token to the token right after signin
 			if (account) {
@@ -53,6 +55,7 @@ export default NextAuth({
 			}
 			return token;
 		},
+		// Configure session token to return to the browser on successful login
 		async session({ session, token }) {
 			// Send properties to the client, like an access_token from a provider.
 			session.accessToken = token.accessToken;
@@ -62,22 +65,21 @@ export default NextAuth({
 			return session;
 		},
 		secret: process.env.NEXTAUTH_SECRET,
-		// jwt: {
-		// 	secret: process.env.NEXTAUTH_SECRET,
-		// 	encryption: true,
-		// },
 	},
+	// configure redirect for successful logins to the user dashboard page
 	async signIn() {
 		const isAllowedToSignIn = true;
 		if (isAllowedToSignIn) {
 			return '/dashboard';
 		} else {
-			// Return false to display a default error message
+			// redirect user to the index route if login fails
 			return '/';
+			// Return false to display a default error message
 			// Or you can return a URL to redirect to:
 			// return '/unauthorized'
 		}
 	},
+	// configure next-auth to use custom login page instead of the template page
 	pages: {
 		signIn: '/login',
 		// signOut: '/auth/signout',

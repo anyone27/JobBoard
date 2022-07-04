@@ -8,10 +8,12 @@ function Navbar() {
 
 	const router = useRouter();
 
+	// if signout, reroute to home page
 	function handleSignOut() {
 		signOut({ callbackUrl: 'http://localhost:3000' });
 	}
 
+	// render specific routes if the user is logged in or not
 	return (
 		<nav>
 			<section className="heading-left">

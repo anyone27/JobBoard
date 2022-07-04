@@ -1,6 +1,7 @@
 import db from '../../../helpers/db';
 
 export default async function Applications(req, res) {
+	// query DB for all vacancies posted by a specific user
 	if (req.method === 'GET') {
 		const data = await db({
 			query:

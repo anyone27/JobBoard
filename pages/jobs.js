@@ -2,6 +2,7 @@ import db from '../helpers/db';
 import Vacancies from '../components/Vacancies';
 
 function JobBoard(query) {
+	// set limit for the length of description to be shown. This can be set for the Vacancies component according to the requirements of the page
 	const limitDesc = 250;
 
 	return (
@@ -22,6 +23,7 @@ function JobBoard(query) {
 
 export default JobBoard;
 
+// on page load, query database for job vacancies and pass back to the website to display the Vacancies component including data
 export async function getServerSideProps() {
 	let query = await db({
 		query:

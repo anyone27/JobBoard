@@ -1,6 +1,7 @@
 import Router from 'next/router';
 
 function CreateCompany({ userId }) {
+	// submit form to api
 	const createCompany = async (event) => {
 		event.preventDefault();
 		const res = await fetch('./api/companies', {

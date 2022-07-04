@@ -1,4 +1,5 @@
 function Icons({ direction }) {
+	// render a different SVG Icon dependant on the direction passed into the component
 	if (!direction) {
 		return (
 			<svg

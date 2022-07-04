@@ -1,5 +1,5 @@
-import countrydata from '../countrycodes.json';
-import currencycodes from '../currencycodes.json';
+import countrydata from '../helpers/countrycodes.json';
+import currencycodes from '../helpers/currencycodes.json';
 import { useState, useEffect } from 'react';
 import Router from 'next/router';
 
@@ -10,6 +10,7 @@ function PostJobs({ companyData, userId }) {
 	let currencyArray = [];
 	let companyArray = [];
 
+	// render dropdown options for companies registered with the user
 	for (const key in companyData) {
 		companyArray.push(
 			<option
@@ -30,6 +31,7 @@ function PostJobs({ companyData, userId }) {
 		);
 	}
 
+	// populate currency options for selection dropdown
 	for (const key in currencycodes) {
 		currencyArray.push(
 			<option key={key} value={currencycodes[key].code}>
@@ -38,6 +40,7 @@ function PostJobs({ companyData, userId }) {
 		);
 	}
 
+	// set state of payrange checkbox
 	const handlePayRange = () => {
 		if (isPayRange) {
 			setIsPayRange(false);
@@ -86,6 +89,7 @@ function PostJobs({ companyData, userId }) {
 		}
 	};
 
+	// if there is data on companies related to user, populate vacancies
 	if (companyArray) {
 		return (
 			<section>
