@@ -36,8 +36,9 @@ export default async function registerUser(req, res) {
 
 			// validate that email can now be found in DB, if not, then return error
 			if (!response[0]) {
+				console.log(response);
 				console.log('Email not recognised');
-				res.send([false, 1]);
+				res.send([false, 1, response]);
 
 				// validate the stored password and the hash match and confirm true
 			} else {

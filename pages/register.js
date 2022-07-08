@@ -26,6 +26,7 @@ function Register() {
 			if (json[0] === false && json[1] === 1) {
 				console.log('Email not recognised');
 				alert('Email not recognised');
+				console.log(json[2]);
 				// if response false and error code 2, incorrect password
 			} else if (json[0] === false && json[1] === 2) {
 				console.log('Incorrect Password');
