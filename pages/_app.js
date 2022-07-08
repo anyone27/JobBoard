@@ -1,5 +1,4 @@
 import '../styles/main.css';
-import { AppProps } from 'next/app';
 import Layout from '../components/Layout';
 import { SessionProvider } from 'next-auth/react';
 
